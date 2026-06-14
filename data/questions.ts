@@ -44,26 +44,20 @@ export const triviaQuestions: TriviaQuestion[] = [
   {
     id: 1,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What internet service famously mailed free CDs to millions of households?",
     answer: "AOL",
     acceptableAnswers: ["America Online", "A.O.L."],
     points: 100,
-    imageUrl: "/images/questions/AOL.png",
-    imageAlt: "AOL free trial CD mailer from the 1990s",
   },
   {
     id: 2,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What pocket-sized virtual pet fad had kids feeding and cleaning up after a pixel creature on a keychain?",
     answer: "Tamagotchi",
     acceptableAnswers: ["Tamogatchi"],
     points: 100,
-    imageUrl: "/images/questions/Tamogatchi.png",
-    imageAlt: "Tamagotchi virtual pet keychain toy",
   },
   {
     id: 3,
@@ -85,18 +79,14 @@ export const triviaQuestions: TriviaQuestion[] = [
   {
     id: 5,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What video rental chain with blue-and-yellow storefronts became synonymous with Friday night movie runs?",
     answer: "Blockbuster",
     points: 100,
-    imageUrl: "/images/questions/Blockbuster.png",
-    imageAlt: "Blockbuster Video store exterior with blue and yellow signage",
   },
   {
     id: 6,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What school book fair catalog arrived in classrooms so kids could order paperbacks, posters, and trinkets?",
     answer: "Scholastic Book Order",
@@ -108,55 +98,41 @@ export const triviaQuestions: TriviaQuestion[] = [
       "Scholastic book fair",
     ],
     points: 100,
-    imageUrl: "/images/questions/Book order.png",
-    imageAlt: "Scholastic classroom book order form",
   },
   {
     id: 7,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What handheld game device from Nintendo let you swap creatures with a link cable and 'Gotta catch 'em all' became a national obsession?",
     answer: "Game Boy",
     acceptableAnswers: ["Pokemon", "Pokémon", "Game Boy Color"],
     points: 200,
-    imageUrl: "/images/questions/Gameboy.png",
-    imageAlt: "Nintendo Game Boy handheld console",
   },
   {
     id: 8,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What fuzzy animatronic toy spoke its own language and became a must-have holiday craze?",
     answer: "Furby",
     points: 100,
-    imageUrl: "/images/questions/Furby.png",
-    imageAlt: "Furby interactive toy from the late 1990s",
   },
   {
     id: 9,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What pioneer-themed computer game taught kids about dysentery, oxen, and fording rivers?",
     answer: "Oregon Trail",
     acceptableAnswers: ["The Oregon Trail"],
     points: 200,
-    imageUrl: "/images/questions/Oregon Trail.png",
-    imageAlt: "The Oregon Trail educational computer game",
   },
   {
     id: 10,
     category: "90s & 2000s Nostalgia",
-    type: "image",
     question:
       "What home video format used magnetic tape and made 'Be kind, rewind' a household phrase?",
     answer: "VHS",
     acceptableAnswers: ["VHS tape", "VHS tapes", "VCR tape"],
     points: 200,
-    imageUrl: "/images/questions/VHS.png",
-    imageAlt: "VHS videotape for home movie rentals",
   },
 
   // ── Disney (10) ─────────────────────────────────────────────────────────
@@ -164,15 +140,16 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 11,
     category: "Disney",
     question:
-      "In The Lion King, what is the name of Simba's wise mandrill mentor?",
-    answer: "Rafiki",
+      "In The Lion King, what carefree phrase do Timon and Pumbaa teach Simba to stop worrying?",
+    answer: "Hakuna Matata",
+    acceptableAnswers: ["Hakuna matata", "No worries"],
     points: 100,
   },
   {
     id: 12,
     category: "Disney",
     question:
-      "What Disney princess gives up her voice to Ursula in exchange for legs?",
+      "Which Disney heroine sings about wanting to be 'part of your world' from her underwater treasure grotto?",
     answer: "Ariel",
     acceptableAnswers: ["The Little Mermaid"],
     points: 100,
@@ -181,65 +158,70 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 13,
     category: "Disney",
     question:
-      "In Frozen, what is the name of the optimistic snowman who loves warm hugs?",
-    answer: "Olaf",
+      "In Frozen, what power ballad does Elsa belt out while building her ice palace?",
+    answer: "Let It Go",
+    acceptableAnswers: ["Let it go"],
     points: 100,
   },
   {
     id: 14,
     category: "Disney",
     question:
-      "What Disney-Pixar film features a rat named Remy who dreams of becoming a chef in Paris?",
-    answer: "Ratatouille",
+      "What Pixar movie made adults openly cry within the first ten minutes of the opening montage?",
+    answer: "Up",
     points: 100,
   },
   {
     id: 15,
     category: "Disney",
-    question: "What is the name of Aladdin's loyal pet monkey?",
-    answer: "Abu",
+    question:
+      "In Aladdin, during 'Friend Like Me,' Genie briefly transforms into a celebrity talk-show host — who?",
+    answer: "Arsenio Hall",
+    acceptableAnswers: ["Arsenio"],
     points: 100,
   },
   {
     id: 16,
     category: "Disney",
     question:
-      "In Beauty and the Beast, what enchanted candelabra welcomes guests with 'Be our guest'?",
-    answer: "Lumière",
-    acceptableAnswers: ["Lumiere"],
+      "In Beauty and the Beast, what household object is Lumière?",
+    answer: "Candelabra",
+    acceptableAnswers: ["A candlestick", "Candlestick"],
     points: 200,
   },
   {
     id: 17,
     category: "Disney",
     question:
-      "What Disney villain has a memorable song called 'Poor Unfortunate Souls'?",
-    answer: "Ursula",
+      "In The Little Mermaid, what does Ariel give up so she can walk on land?",
+    answer: "Her voice",
+    acceptableAnswers: ["Ariel's voice", "Her singing voice", "Voice"],
     points: 100,
   },
   {
     id: 18,
     category: "Disney",
     question:
-      "In Toy Story, what is the name of the space ranger action figure who doesn't realize he's a toy?",
-    answer: "Buzz Lightyear",
-    acceptableAnswers: ["Buzz"],
+      "In Toy Story, what's Buzz Lightyear's signature catchphrase when he thinks he's really flying?",
+    answer: "To infinity and beyond",
+    acceptableAnswers: ["To infinity and beyond!"],
     points: 100,
   },
   {
     id: 19,
     category: "Disney",
     question:
-      "What flying baby elephant is teased for his oversized ears before learning they help him soar?",
-    answer: "Dumbo",
+      "What Disney movie opens with a dramatic sunrise over the Pride Lands?",
+    answer: "The Lion King",
+    acceptableAnswers: ["Lion King"],
     points: 100,
   },
   {
     id: 20,
     category: "Disney",
     question:
-      "In Mulan, what tiny red dragon sidekick is voiced by Eddie Murphy?",
-    answer: "Mushu",
+      "Which Disney movie sends its heroine to boot camp to the tune of 'I'll Make a Man Out of You'?",
+    answer: "Mulan",
     points: 200,
   },
 
@@ -257,8 +239,9 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 22,
     category: "Movies & TV",
     question:
-      "What sitcom follows six friends who regularly hang out at Central Perk coffee shop?",
-    answer: "Friends",
+      "In Friends, what unusual pet did Ross briefly keep in his apartment — causing chaos for the whole group?",
+    answer: "Marcel",
+    acceptableAnswers: ["A monkey", "The monkey"],
     points: 100,
   },
   {
@@ -273,22 +256,18 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 24,
     category: "Movies & TV",
     question:
-      "In The Office (US), what is the name of the bumbling but lovable regional manager played by Steve Carell?",
-    answer: "Michael Scott",
-    acceptableAnswers: ["Michael"],
+      "In The Office, Michael Scott organizes a charity fun run — what disease is he hilariously trying to raise awareness for?",
+    answer: "Rabies",
     points: 100,
   },
   {
     id: 25,
     category: "Movies & TV",
-    type: "image",
     question:
-      "What animated sponge lives in a pineapple under the sea in Bikini Bottom?",
-    answer: "SpongeBob SquarePants",
-    acceptableAnswers: ["SpongeBob", "Spongebob"],
+      "In SpongeBob SquarePants, what fast-food restaurant does SpongeBob proudly flip patties at?",
+    answer: "The Krusty Krab",
+    acceptableAnswers: ["Krusty Krab"],
     points: 100,
-    imageUrl: "/images/questions/spongebob.jpg",
-    imageAlt: "SpongeBob SquarePants cartoon character",
   },
   {
     id: 26,
@@ -320,17 +299,21 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 29,
     category: "Movies & TV",
     question:
-      "What wizarding school does Harry Potter attend in the film series?",
-    answer: "Hogwarts",
+      "In Harry Potter, what hidden platform at King's Cross do students use to catch the Hogwarts Express?",
+    answer: "Platform 9 and 3/4",
+    acceptableAnswers: [
+      "Platform 9 3/4",
+      "Platform nine and three quarters",
+      "9 and 3/4",
+    ],
     points: 100,
   },
   {
     id: 30,
     category: "Movies & TV",
     question:
-      "In Seinfeld, what is the name of Jerry's eccentric neighbor who slides dramatically into Jerry's apartment?",
-    answer: "Kramer",
-    acceptableAnswers: ["Cosmo Kramer"],
+      "In Seinfeld, what made-up holiday does George's dad invent with feats of strength and an airing of grievances?",
+    answer: "Festivus",
     points: 200,
   },
 
@@ -357,9 +340,8 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 33,
     category: "Pop Culture & Music",
     question:
-      "What rapper's real name is Marshall Mathers?",
-    answer: "Eminem",
-    acceptableAnswers: ["Slim Shady"],
+      "Before Spotify, what peer-to-peer service had college kids downloading songs one track at a time — and nervously watching for lawsuits?",
+    answer: "Napster",
     points: 100,
   },
   {
@@ -527,14 +509,11 @@ export const triviaQuestions: TriviaQuestion[] = [
   {
     id: 47,
     category: "Bonus Round",
-    type: "image",
     question:
       "What Nintendo console brought us Mario Kart 64, GoldenEye 007, and four-controller multiplayer parties?",
     answer: "Nintendo 64",
     acceptableAnswers: ["N64", "N64 console"],
     points: 500,
-    imageUrl: "/images/questions/N64.png",
-    imageAlt: "Nintendo 64 console with controller",
   },
   {
     id: 48,
@@ -558,8 +537,8 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 50,
     category: "Bonus Round",
     question:
-      "What athletic brand's famous slogan is 'Just Do It'?",
-    answer: "Nike",
+      "What blockbuster made us all think twice about going in the ocean — with a two-note theme everyone still hums?",
+    answer: "Jaws",
     points: 500,
   },
 ];
