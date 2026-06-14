@@ -46,7 +46,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 1,
     category: "Millennial Artifacts",
     question:
-      "This company mailed so many internet CDs that they became coasters, frisbees, and emergency bookmarks. Name it.",
+      "Your family had a stack of free trial discs that slowly became coasters. When the computer finally connected, a voice announced the most exciting moment of the week. Name the service.",
     answer: "AOL",
     acceptableAnswers: ["America Online", "A.O.L."],
     points: 100,
@@ -80,15 +80,9 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 5,
     category: "Millennial Artifacts",
     question:
-      "Classrooms handed out glossy flyers; kids circled paperback horror stories and begged parents for a check by Monday. Name the catalog.",
-    answer: "Scholastic Book Order",
-    acceptableAnswers: [
-      "Scholastic",
-      "Book order",
-      "Scholastic book order",
-      "Scholastic Book Club",
-      "Scholastic book fair",
-    ],
+      "What annual reading program convinced millions of children that books could somehow be exchanged for pizza?",
+    answer: "Book It!",
+    acceptableAnswers: ["Book It", "BOOK IT!", "Pizza Hut Book It"],
     points: 200,
   },
   {
@@ -104,16 +98,16 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 7,
     category: "Millennial Artifacts",
     question:
-      "Roughly one minute of a hit song on a plastic clip, looped onto a backpack — what was this portable music fad called?",
-    answer: "Hit Clips",
-    acceptableAnswers: ["HitClip"],
+      "Before Spotify, before iTunes, and before most people owned MP3 players, millions of teenagers downloaded music from this service while hoping they weren't also downloading a computer virus.",
+    answer: "Napster",
+    acceptableAnswers: ["Napster.com"],
     points: 200,
   },
   {
     id: 8,
     category: "Millennial Artifacts",
     question:
-      "Feed it, clean it, or find it dead in your pocket after third period. What keychain pet am I describing?",
+      "Teachers banned them from classrooms. Kids hid them in pencil cases anyway. When the tiny screen started beeping during a test, you knew you'd forgotten to feed something important — name the keychain pet craze.",
     answer: "Tamagotchi",
     acceptableAnswers: ["Tamogatchi"],
     points: 100,
@@ -122,7 +116,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 9,
     category: "Millennial Artifacts",
     question:
-      "A link cable, playground trades, and a national catchphrase about catching them all — which Nintendo handheld tied it together?",
+      "Playground negotiations, a link cable, and trades that could make or break your social status at recess — which Nintendo handheld turned schoolyards into trading floors?",
     answer: "Game Boy",
     acceptableAnswers: ["Pokemon", "Pokémon", "Game Boy Color"],
     points: 200,
@@ -142,7 +136,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 11,
     category: "Disney Deep Cuts",
     question:
-      "This Disneyland attraction contains a hidden basketball hoop, no actual summit, and a resident yeti. Name it.",
+      "Cast Members have been known to shoot hoops inside this snow-capped peak — which has no real summit, tubular steel history, and a yeti waiting in the dark. Name the Disneyland ride.",
     answer: "Matterhorn Bobsleds",
     acceptableAnswers: ["The Matterhorn", "Matterhorn"],
     points: 100,
@@ -157,7 +151,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 12,
     category: "Disney Deep Cuts",
     question:
-      "Imagineers needed to move guests between levels without making it feel like transportation. The solution became one of Disneyland's most famous pre-shows. Name the attraction.",
+      "Your Ghost Host welcomes you into a room where portraits stretch, chandeliers rise, and nobody notices they're quietly being lowered toward their doom-wagon below. Name the attraction.",
     answer: "Haunted Mansion",
     acceptableAnswers: ["The Haunted Mansion"],
     points: 200,
@@ -172,7 +166,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 13,
     category: "Disney Deep Cuts",
     question:
-      "Invitation-only, hidden above New Orleans Square, and whispered about like a speakeasy with Mickey-shaped appetizers — name the club.",
+      "Hidden above a beloved restaurant in New Orleans Square is a door most guests will never pass through — invitation only, whispered about for decades, and still carrying a legendary waitlist. Name the club.",
     answer: "Club 33",
     points: 200,
     choices: ["Club 33", "Blue Bayou", "Carnation Cafe", "The Golden Horseshoe"],
@@ -316,7 +310,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 26,
     category: "Movies & TV Connections",
     question:
-      "Outwit, outplay, outlast — and a torch snuffed at tribal council when your torch goes out, so do you. Name the show.",
+      "Stranded on an island, alliances shift at camp, and one ritual with fire decides who goes home — name the reality show that turned 'blindsided' into living-room vocabulary.",
     answer: "Survivor",
     points: 100,
   },
@@ -373,10 +367,11 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 32,
     category: "Pop Culture Chain Reactions",
     question:
-      "Dorm rooms, shared MP3s, record-label panic, and a courtroom that changed how we buy music — name the file-sharing service that started the chain reaction.",
-    answer: "Napster",
+      "About sixty seconds of a radio hit, clipped onto a carabiner, swinging from every middle-school backpack — name the portable music fad that made headphones optional.",
+    answer: "Hit Clips",
+    acceptableAnswers: ["HitClip"],
     points: 200,
-    choices: ["Limewire", "Kazaa", "Napster", "iTunes"],
+    choices: ["Hit Clips", "MiniDisc", "Walkman", "Discman"],
   },
   {
     id: 33,
@@ -402,7 +397,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 35,
     category: "Pop Culture Chain Reactions",
     question:
-      "First they told you what kind of man to avoid. Then they warned you about chasing waterfalls. Name the trio.",
+      "An Atlanta trio turned dating standards into car-stereo law for the late '90s — every road trip still knows the words. Name the group.",
     answer: "TLC",
     points: 100,
     choices: ["Destiny's Child", "En Vogue", "TLC", "SWV"],
@@ -509,7 +504,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Before it learned English, this toy babbled in its own language. What was that language called?",
+      "It arrived under the tree speaking gibberish at midnight, learned English like a toddler, and convinced an entire generation of parents they'd made a terrible mistake — what language did it speak first?",
     answer: "Furbish",
     acceptableAnswers: ["Furbish language"],
     points: 200,
@@ -533,7 +528,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Ignore the beeping during a test and this pocket pet's fate was sealed. What happened to it?",
+      "You kept it hidden in your desk while pretending to listen to long division. Ignore the beeping long enough and you'd come home to a tiny digital tragedy — what happened?",
     answer: "It dies",
     acceptableAnswers: ["It died", "Death", "It dies", "Your pet dies"],
     points: 100,
@@ -545,9 +540,9 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Four controller ports made this console the undisputed king of living-room multiplayer parties. How many ports did it have?",
-    answer: "Four",
-    acceptableAnswers: ["4", "Four ports", "4 controller ports"],
+      "Sleepovers meant four controllers, a three-pronged grip nobody could explain, and arguments over who had to use the mushy analog stick — name the console.",
+    answer: "Nintendo 64",
+    acceptableAnswers: ["N64", "N64 console"],
     points: 300,
     imageUrl: "/images/questions/N64.png",
     imageAlt: "A Nintendo 64 console with controllers",
@@ -557,7 +552,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Kids circled items in these classroom flyers and handed a check to their teacher. What were they ordering?",
+      "Once a month the teacher handed out glossy flyers and suddenly everyone needed Goosebumps, erasers shaped like food, and permission to spend their allowance — what were kids ordering?",
     answer: "Books",
     acceptableAnswers: ["Book order", "Scholastic books", "Paperbacks"],
     points: 100,
@@ -569,7 +564,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "When this service connected, a famous voice told you your inbox had arrived. What was the catchphrase?",
+      "After the modem finished screaming and the connection finally held, a cheerful voice delivered the most exciting sentence of the dial-up era — what two-word phrase was it?",
     answer: "You've got mail",
     acceptableAnswers: ["Youve got mail", "You've Got Mail"],
     points: 300,

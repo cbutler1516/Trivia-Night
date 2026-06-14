@@ -22,7 +22,9 @@ import {
   getSubmissionsForQuestion,
   getTimerRemaining,
   isTimerExpired,
+  registerTeamCaptain,
   submitAnswer,
+  unregisterTeamCaptain,
   type GameState,
   type Team,
 } from "@/lib/game-store";
@@ -98,6 +100,7 @@ export default function PlayPage() {
   const [gameState, setGameState] = useState<GameState>(() => getGameState());
   const [captainName, setCaptainName] = useState("");
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+  const [joinError, setJoinError] = useState<string | null>(null);
 
   const [textAnswer, setTextAnswer] = useState("");
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
@@ -181,6 +184,24 @@ export default function PlayPage() {
     }
   }, [isTimeUp, currentIndex]);
 
+  useEffect(() => {
+    if (!playerSession) return;
+
+    const registeredCaptain = gameState.teamCaptains[playerSession.team];
+    if (registeredCaptain && registeredCaptain !== playerSession.captainName) {
+      clearPlayerSession();
+      setPlayerSession(null);
+      setJoinError(
+        `${playerSession.team === "husbands" ? "Husbands" : "Wives"} captain already joined as ${registeredCaptain}.`,
+      );
+      return;
+    }
+
+    if (!registeredCaptain) {
+      registerTeamCaptain(playerSession.team, playerSession.captainName);
+    }
+  }, [gameState.teamCaptains, playerSession]);
+
   const userAnswer =
     questionType === "standard" || questionType === "image"
       ? textAnswer
@@ -191,12 +212,33 @@ export default function PlayPage() {
   function handleJoin(e: FormEvent) {
     e.preventDefault();
     if (!captainName.trim() || !selectedTeam) return;
+
+    const result = registerTeamCaptain(selectedTeam, captainName);
+    if (!result.ok) {
+      setJoinError(result.message);
+      return;
+    }
+
     const session: PlayerSession = {
       team: selectedTeam,
       captainName: captainName.trim(),
     };
     savePlayerSession(session);
     setPlayerSession(session);
+    setJoinError(null);
+  }
+
+  function handleSelectTeam(team: Team) {
+    const registeredCaptain = gameState.teamCaptains[team];
+    if (registeredCaptain) {
+      setJoinError(
+        `${team === "husbands" ? "Husbands" : "Wives"} captain already joined as ${registeredCaptain}.`,
+      );
+      return;
+    }
+
+    setSelectedTeam(team);
+    setJoinError(null);
   }
 
   function handleSubmit(e?: FormEvent) {
@@ -223,10 +265,14 @@ export default function PlayPage() {
   }
 
   function handleResetPlayer() {
+    if (playerSession) {
+      unregisterTeamCaptain(playerSession.team);
+    }
     clearPlayerSession();
     setPlayerSession(null);
     setCaptainName("");
     setSelectedTeam(null);
+    setJoinError(null);
     setTextAnswer("");
     setSelectedChoice(null);
     setSelectedLetter(null);
@@ -241,9 +287,46 @@ export default function PlayPage() {
             <h1 className="arcade-title arcade-title-glow text-3xl">
               The Millennial Showdown
             </h1>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-300">
+              One player per team should join the game.
+            </p>
           </header>
 
           <form onSubmit={handleJoin} className="flex flex-col gap-5">
+            <div>
+              <p className="arcade-eyebrow mb-3 text-center text-slate-400">
+                Choose a Team Captain
+              </p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <button
+                  type="button"
+                  onClick={() => handleSelectTeam("husbands")}
+                  disabled={!!gameState.teamCaptains.husbands}
+                  className={`arcade-team-btn arcade-team-btn--husbands ${selectedTeam === "husbands" ? "is-active" : ""} disabled:cursor-not-allowed disabled:opacity-50`}
+                >
+                  Husbands Captain
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleSelectTeam("wives")}
+                  disabled={!!gameState.teamCaptains.wives}
+                  className={`arcade-team-btn arcade-team-btn--wives ${selectedTeam === "wives" ? "is-active" : ""} disabled:cursor-not-allowed disabled:opacity-50`}
+                >
+                  Wives Captain
+                </button>
+              </div>
+              {(gameState.teamCaptains.husbands || gameState.teamCaptains.wives) && (
+                <ul className="mt-3 space-y-1 text-center text-xs text-slate-400">
+                  {gameState.teamCaptains.husbands && (
+                    <li>Husbands Captain: {gameState.teamCaptains.husbands}</li>
+                  )}
+                  {gameState.teamCaptains.wives && (
+                    <li>Wives Captain: {gameState.teamCaptains.wives}</li>
+                  )}
+                </ul>
+              )}
+            </div>
+
             <div className="arcade-card p-4">
               <label
                 htmlFor="captain"
@@ -255,41 +338,30 @@ export default function PlayPage() {
                 id="captain"
                 type="text"
                 value={captainName}
-                onChange={(e) => setCaptainName(e.target.value)}
-                placeholder="Enter your name..."
+                onChange={(e) => {
+                  setCaptainName(e.target.value);
+                  setJoinError(null);
+                }}
+                placeholder="Enter captain name..."
                 autoComplete="name"
                 className="arcade-input text-base"
               />
             </div>
 
-            <div>
-              <p className="arcade-eyebrow mb-3 text-center text-slate-400">
-                Choose Your Team
-              </p>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                <button
-                  type="button"
-                  onClick={() => setSelectedTeam("husbands")}
-                  className={`arcade-team-btn arcade-team-btn--husbands ${selectedTeam === "husbands" ? "is-active" : ""}`}
-                >
-                  👨 Husbands
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setSelectedTeam("wives")}
-                  className={`arcade-team-btn arcade-team-btn--wives ${selectedTeam === "wives" ? "is-active" : ""}`}
-                >
-                  👩 Wives
-                </button>
-              </div>
-            </div>
+            <p className="text-center text-sm text-slate-400">
+              The captain submits answers for the team.
+            </p>
+
+            {joinError && (
+              <p className="text-center text-sm text-red-300">{joinError}</p>
+            )}
 
             <button
               type="submit"
               disabled={!captainName.trim() || !selectedTeam}
               className="arcade-btn arcade-btn--primary px-6 py-4 text-sm"
             >
-              Enter Game
+              Join as Captain
             </button>
           </form>
 
@@ -302,7 +374,7 @@ export default function PlayPage() {
   }
 
   const teamLabel =
-    playerSession.team === "husbands" ? "Team Husbands" : "Team Wives";
+    playerSession.team === "husbands" ? "Husbands Captain" : "Wives Captain";
   const teamScore = gameState.scores[playerSession.team];
   const teamColorClass =
     playerSession.team === "husbands" ? "text-blue-300" : "text-purple-300";
@@ -454,7 +526,7 @@ export default function PlayPage() {
                 htmlFor="answer"
                 className="arcade-eyebrow mb-2 block text-slate-400"
               >
-                Your Answer
+                Your Team&apos;s Answer
               </label>
               <input
                 id="answer"
@@ -496,7 +568,7 @@ export default function PlayPage() {
             disabled={!userAnswer.trim()}
             className="arcade-btn arcade-btn--primary px-6 py-4 text-sm"
           >
-            Submit Answer
+            Submit Team Answer
           </button>
         )}
       </div>
@@ -506,7 +578,7 @@ export default function PlayPage() {
         onClick={handleResetPlayer}
         className="arcade-footer-hint mt-8 w-full py-2 transition-colors hover:text-slate-400"
       >
-        Reset Player
+        Leave Captain Role
       </button>
     </RetroShell>
   );

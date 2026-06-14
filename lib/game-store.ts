@@ -26,6 +26,10 @@ export interface GameState {
   submissionHistory: Record<string, QuestionSubmissions>;
   answerMarks: QuestionMarks;
   roundAnswerMarks: Record<string, QuestionMarks>;
+  teamCaptains: {
+    husbands?: string;
+    wives?: string;
+  };
   timerSeconds: number;
   timerRunning: boolean;
   timerStartedAt: number | null;
@@ -48,6 +52,7 @@ const DEFAULT_STATE: GameState = {
   submissionHistory: {},
   answerMarks: {},
   roundAnswerMarks: {},
+  teamCaptains: {},
   timerSeconds: DEFAULT_TIMER_DURATION,
   timerRunning: false,
   timerStartedAt: null,
@@ -133,6 +138,21 @@ function normalizeRoundAnswerMarks(
   return result;
 }
 
+function normalizeTeamCaptains(
+  captains?: Partial<Record<string, string>>,
+): GameState["teamCaptains"] {
+  const result: GameState["teamCaptains"] = {};
+  if (!captains) return result;
+
+  for (const [key, value] of Object.entries(captains)) {
+    if (typeof value === "string" && value.trim()) {
+      result[normalizeTeam(key)] = value.trim();
+    }
+  }
+
+  return result;
+}
+
 function normalizeGameState(
   state: Partial<GameState> & { isAnswerRevealed?: boolean },
 ): GameState {
@@ -163,6 +183,7 @@ function normalizeGameState(
     submissionHistory: normalizeSubmissionHistory(state.submissionHistory),
     answerMarks: normalizeAnswerMarks(state.answerMarks),
     roundAnswerMarks: normalizeRoundAnswerMarks(state.roundAnswerMarks),
+    teamCaptains: normalizeTeamCaptains(state.teamCaptains),
     timerDuration,
     timerSeconds:
       typeof state.timerSeconds === "number"
@@ -342,6 +363,7 @@ export function resetGame(): GameState {
     submissionHistory: {},
     answerMarks: {},
     roundAnswerMarks: {},
+    teamCaptains: {},
   };
   saveGameState(state);
   return state;
@@ -355,6 +377,7 @@ export function resetGameState(): GameState {
     submissionHistory: {},
     answerMarks: {},
     roundAnswerMarks: {},
+    teamCaptains: {},
   };
   saveGameState(state);
   return state;
@@ -423,6 +446,43 @@ export function submitAnswer(team: Team | string, answer: string): GameState {
 export function clearSubmissions(): GameState {
   const state = getGameState();
   state.submissions = {};
+  saveGameState(state);
+  return state;
+}
+
+export function registerTeamCaptain(
+  team: Team | string,
+  captainName: string,
+): { ok: true; state: GameState } | { ok: false; message: string } {
+  const state = getGameState();
+  const normalizedTeam = normalizeTeam(team);
+  const trimmed = captainName.trim();
+
+  if (!trimmed) {
+    return { ok: false, message: "Enter a captain name." };
+  }
+
+  state.teamCaptains = normalizeTeamCaptains(state.teamCaptains);
+  const existing = state.teamCaptains[normalizedTeam];
+
+  if (existing && existing !== trimmed) {
+    const teamLabel = normalizedTeam === "husbands" ? "Husbands" : "Wives";
+    return {
+      ok: false,
+      message: `${teamLabel} captain already joined as ${existing}.`,
+    };
+  }
+
+  state.teamCaptains[normalizedTeam] = trimmed;
+  saveGameState(state);
+  return { ok: true, state };
+}
+
+export function unregisterTeamCaptain(team: Team | string): GameState {
+  const state = getGameState();
+  const normalizedTeam = normalizeTeam(team);
+  state.teamCaptains = normalizeTeamCaptains(state.teamCaptains);
+  delete state.teamCaptains[normalizedTeam];
   saveGameState(state);
   return state;
 }
