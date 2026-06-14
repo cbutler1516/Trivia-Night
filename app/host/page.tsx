@@ -9,7 +9,7 @@ import {
   resolveQuestionType,
   type TriviaQuestion,
 } from "@/data/questions";
-import { ImageQuestion } from "@/components/ImageQuestion";
+import { SoundTestPanel } from "@/components/SoundTestPanel";
 import {
   GAME_STATE_UPDATED_EVENT,
   adjustScore,
@@ -496,6 +496,8 @@ export default function HostPage() {
           </button>
         </div>
       </form>
+
+      <SoundTestPanel />
 
       <button
         type="button"

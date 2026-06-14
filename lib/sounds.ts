@@ -94,42 +94,54 @@ function getAudio(event: SoundEvent, path: string): HTMLAudioElement | null {
   }
 }
 
-export function playSound(event: SoundEvent): void {
+export function getSoundPath(event: SoundEvent): string {
+  return SOUND_PATHS[event];
+}
+
+export type SoundPlayResult = {
+  ok: boolean;
+  path: string;
+  reason?: string;
+};
+
+export async function playSoundWithResult(
+  event: SoundEvent,
+): Promise<SoundPlayResult> {
+  const path = SOUND_PATHS[event];
+
   if (!isBrowser()) {
-    logFailure(event, SOUND_PATHS[event], "not in browser");
-    return;
+    logFailure(event, path, "not in browser");
+    return { ok: false, path, reason: "not in browser" };
   }
 
   if (isMuted()) {
-    logFailure(event, SOUND_PATHS[event], "muted");
-    return;
+    logFailure(event, path, "muted");
+    return { ok: false, path, reason: "muted" };
   }
 
-  const path = SOUND_PATHS[event];
   logAttempt(event, path);
 
   const audio = getAudio(event, path);
-  if (!audio) return;
+  if (!audio) {
+    return { ok: false, path, reason: "failed to load audio" };
+  }
 
   try {
     const instance = audio.cloneNode() as HTMLAudioElement;
     instance.volume = 0.55;
-    void instance.play().then(() => {
-      logSuccess(event, path);
-    }).catch((error: unknown) => {
-      logFailure(
-        event,
-        path,
-        error instanceof Error ? error.message : "playback blocked or failed",
-      );
-    });
+    await instance.play();
+    logSuccess(event, path);
+    return { ok: true, path };
   } catch (error) {
-    logFailure(
-      event,
-      path,
-      error instanceof Error ? error.message : "unknown playback error",
-    );
+    const reason =
+      error instanceof Error ? error.message : "playback blocked or failed";
+    logFailure(event, path, reason);
+    return { ok: false, path, reason };
   }
+}
+
+export function playSound(event: SoundEvent): void {
+  void playSoundWithResult(event);
 }
 
 export function playAnswerSubmitted(): void {
