@@ -19,6 +19,7 @@ import { ImageQuestion } from "@/components/ImageQuestion";
 import {
   GAME_STATE_UPDATED_EVENT,
   getGameState,
+  getSubmissionsForQuestion,
   getTimerRemaining,
   isTimerExpired,
   submitAnswer,
@@ -110,12 +111,14 @@ export default function PlayPage() {
 
     const refresh = () => setGameState(getGameState());
     window.addEventListener(GAME_STATE_UPDATED_EVENT, refresh);
+    window.addEventListener("storage", refresh);
 
     const poll = setInterval(refresh, 500);
     const tick = setInterval(() => setTick((t) => t + 1), 1000);
 
     return () => {
       window.removeEventListener(GAME_STATE_UPDATED_EVENT, refresh);
+      window.removeEventListener("storage", refresh);
       clearInterval(poll);
       clearInterval(tick);
     };
@@ -135,7 +138,7 @@ export default function PlayPage() {
   }, [question.id, questionType]);
 
   const teamSubmission = playerSession
-    ? gameState.submissions[playerSession.team]
+    ? getSubmissionsForQuestion(gameState, currentIndex)[playerSession.team]
     : undefined;
 
   const timerRemaining = getTimerRemaining(gameState);
@@ -154,7 +157,22 @@ export default function PlayPage() {
     setSelectedChoice(null);
     setSelectedLetter(null);
     soundPlayedRef.current = { timer: -1 };
-  }, [currentIndex]);
+
+    if (!playerSession) return;
+
+    const submitted = getSubmissionsForQuestion(
+      getGameState(),
+      currentIndex,
+    )[playerSession.team];
+
+    if (!submitted) return;
+
+    if (questionType === "multiple-choice") {
+      setSelectedChoice(submitted);
+    } else if (questionType === "two-lies") {
+      setSelectedLetter(submitted.toUpperCase());
+    }
+  }, [currentIndex, playerSession, questionType]);
 
   useEffect(() => {
     if (isTimeUp && soundPlayedRef.current.timer !== currentIndex) {
