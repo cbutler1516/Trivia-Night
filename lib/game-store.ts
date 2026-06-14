@@ -1,40 +1,55 @@
+import { getCategoryForQuestionIndex } from "@/lib/rounds";
+import { triviaQuestions } from "@/data/questions";
+
 export type Team = "husbands" | "wives";
 export type AnswerMark = "correct" | "incorrect";
 
+export type QuestionSubmissions = {
+  husbands?: string;
+  wives?: string;
+};
+
+export type QuestionMarks = {
+  husbands?: AnswerMark;
+  wives?: AnswerMark;
+};
+
 export interface GameState {
   currentQuestionIndex: number;
-  isAnswerRevealed: boolean;
+  isRoundRevealed: boolean;
+  roundRevealedCategory: string | null;
   scores: {
     husbands: number;
     wives: number;
   };
-  submissions: {
-    husbands?: string;
-    wives?: string;
-  };
-  answerMarks: {
-    husbands?: AnswerMark;
-    wives?: AnswerMark;
-  };
+  submissions: QuestionSubmissions;
+  submissionHistory: Record<string, QuestionSubmissions>;
+  answerMarks: QuestionMarks;
+  roundAnswerMarks: Record<string, QuestionMarks>;
   timerSeconds: number;
   timerRunning: boolean;
   timerStartedAt: number | null;
   timerDuration: number;
 }
+
 const STORAGE_KEY = "millennial-showdown-game-state";
 export const GAME_STATE_UPDATED_EVENT = "game-state-updated";
 export const DEFAULT_TIMER_DURATION = 30;
 
 const DEFAULT_STATE: GameState = {
   currentQuestionIndex: 0,
-  isAnswerRevealed: false,
+  isRoundRevealed: false,
+  roundRevealedCategory: null,
   scores: {
     husbands: 0,
     wives: 0,
   },
   submissions: {},
+  submissionHistory: {},
   answerMarks: {},
-  timerSeconds: DEFAULT_TIMER_DURATION,  timerRunning: false,
+  roundAnswerMarks: {},
+  timerSeconds: DEFAULT_TIMER_DURATION,
+  timerRunning: false,
   timerStartedAt: null,
   timerDuration: DEFAULT_TIMER_DURATION,
 };
@@ -51,8 +66,8 @@ export function normalizeTeam(team: string): Team {
 
 function normalizeSubmissions(
   submissions?: Partial<Record<string, string>>,
-): GameState["submissions"] {
-  const result: GameState["submissions"] = {};
+): QuestionSubmissions {
+  const result: QuestionSubmissions = {};
   if (!submissions) return result;
 
   for (const [key, value] of Object.entries(submissions)) {
@@ -79,8 +94,8 @@ function normalizeScores(
 
 function normalizeAnswerMarks(
   marks?: Partial<Record<string, AnswerMark>>,
-): GameState["answerMarks"] {
-  const result: GameState["answerMarks"] = {};
+): QuestionMarks {
+  const result: QuestionMarks = {};
   if (!marks) return result;
 
   for (const [key, value] of Object.entries(marks)) {
@@ -92,11 +107,44 @@ function normalizeAnswerMarks(
   return result;
 }
 
-function normalizeGameState(state: Partial<GameState>): GameState {
+function normalizeSubmissionHistory(
+  history?: Record<string, Partial<Record<string, string>>>,
+): Record<string, QuestionSubmissions> {
+  const result: Record<string, QuestionSubmissions> = {};
+  if (!history) return result;
+
+  for (const [index, submissions] of Object.entries(history)) {
+    result[index] = normalizeSubmissions(submissions);
+  }
+
+  return result;
+}
+
+function normalizeRoundAnswerMarks(
+  marks?: Record<string, Partial<Record<string, AnswerMark>>>,
+): Record<string, QuestionMarks> {
+  const result: Record<string, QuestionMarks> = {};
+  if (!marks) return result;
+
+  for (const [index, teamMarks] of Object.entries(marks)) {
+    result[index] = normalizeAnswerMarks(teamMarks);
+  }
+
+  return result;
+}
+
+function normalizeGameState(
+  state: Partial<GameState> & { isAnswerRevealed?: boolean },
+): GameState {
   const timerDuration =
     typeof state.timerDuration === "number" && state.timerDuration > 0
       ? state.timerDuration
       : DEFAULT_TIMER_DURATION;
+
+  const isRoundRevealed =
+    typeof state.isRoundRevealed === "boolean"
+      ? state.isRoundRevealed
+      : Boolean(state.isAnswerRevealed);
 
   return {
     ...DEFAULT_STATE,
@@ -105,10 +153,16 @@ function normalizeGameState(state: Partial<GameState>): GameState {
       typeof state.currentQuestionIndex === "number"
         ? state.currentQuestionIndex
         : DEFAULT_STATE.currentQuestionIndex,
-    isAnswerRevealed: Boolean(state.isAnswerRevealed),
+    isRoundRevealed,
+    roundRevealedCategory:
+      typeof state.roundRevealedCategory === "string"
+        ? state.roundRevealedCategory
+        : null,
     scores: normalizeScores(state.scores),
     submissions: normalizeSubmissions(state.submissions),
+    submissionHistory: normalizeSubmissionHistory(state.submissionHistory),
     answerMarks: normalizeAnswerMarks(state.answerMarks),
+    roundAnswerMarks: normalizeRoundAnswerMarks(state.roundAnswerMarks),
     timerDuration,
     timerSeconds:
       typeof state.timerSeconds === "number"
@@ -143,12 +197,40 @@ export function isTimerExpired(state: GameState): boolean {
 }
 
 export function getSubmissionCount(
-  submissions: GameState["submissions"],
+  submissions: QuestionSubmissions,
 ): number {
   let count = 0;
   if (submissions.husbands) count += 1;
   if (submissions.wives) count += 1;
   return count;
+}
+
+export function getSubmissionsForQuestion(
+  state: GameState,
+  questionIndex: number,
+): QuestionSubmissions {
+  const key = String(questionIndex);
+  if (state.currentQuestionIndex === questionIndex) {
+    return normalizeSubmissions({
+      ...state.submissionHistory[key],
+      ...state.submissions,
+    });
+  }
+  return normalizeSubmissions(state.submissionHistory[key]);
+}
+
+export function getMarksForQuestion(
+  state: GameState,
+  questionIndex: number,
+): QuestionMarks {
+  const key = String(questionIndex);
+  if (state.currentQuestionIndex === questionIndex) {
+    return normalizeAnswerMarks({
+      ...state.roundAnswerMarks[key],
+      ...state.answerMarks,
+    });
+  }
+  return normalizeAnswerMarks(state.roundAnswerMarks[key]);
 }
 
 function syncExpiredTimer(state: GameState): GameState {
@@ -169,12 +251,38 @@ function resetTimerState(state: GameState): GameState {
   return state;
 }
 
+function persistSubmissionsForIndex(
+  state: GameState,
+  questionIndex: number,
+): void {
+  const key = String(questionIndex);
+  const merged = normalizeSubmissions({
+    ...state.submissionHistory[key],
+    ...state.submissions,
+  });
+
+  if (merged.husbands || merged.wives) {
+    state.submissionHistory[key] = merged;
+  }
+}
+
+function loadLiveSubmissionsForIndex(
+  state: GameState,
+  questionIndex: number,
+): void {
+  const key = String(questionIndex);
+  state.submissions = { ...state.submissionHistory[key] };
+  state.answerMarks = { ...state.roundAnswerMarks[key] };
+}
+
 export function getGameState(): GameState {
   if (!isBrowser()) {
     return {
       ...DEFAULT_STATE,
       scores: { ...DEFAULT_STATE.scores },
       submissions: {},
+      submissionHistory: {},
+      roundAnswerMarks: {},
     };
   }
 
@@ -185,9 +293,13 @@ export function getGameState(): GameState {
         ...DEFAULT_STATE,
         scores: { ...DEFAULT_STATE.scores },
         submissions: {},
+        submissionHistory: {},
+        roundAnswerMarks: {},
       };
     }
-    const parsed = JSON.parse(raw) as Partial<GameState>;
+    const parsed = JSON.parse(raw) as Partial<GameState> & {
+      isAnswerRevealed?: boolean;
+    };
     let state = normalizeGameState(parsed);
     const synced = syncExpiredTimer(state);
 
@@ -196,7 +308,10 @@ export function getGameState(): GameState {
       synced.timerRunning !== state.timerRunning ||
       synced.timerStartedAt !== state.timerStartedAt
     ) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeGameState(synced)));
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(normalizeGameState(synced)),
+      );
       state = synced;
     }
 
@@ -206,6 +321,8 @@ export function getGameState(): GameState {
       ...DEFAULT_STATE,
       scores: { ...DEFAULT_STATE.scores },
       submissions: {},
+      submissionHistory: {},
+      roundAnswerMarks: {},
     };
   }
 }
@@ -222,7 +339,9 @@ export function resetGameState(): GameState {
     ...DEFAULT_STATE,
     scores: { ...DEFAULT_STATE.scores },
     submissions: {},
+    submissionHistory: {},
     answerMarks: {},
+    roundAnswerMarks: {},
   };
   saveGameState(state);
   return state;
@@ -230,25 +349,42 @@ export function resetGameState(): GameState {
 
 export function setCurrentQuestionIndex(index: number): GameState {
   const state = getGameState();
-  state.currentQuestionIndex = Math.max(0, index);
-  state.isAnswerRevealed = false;
+  const oldIndex = state.currentQuestionIndex;
+  const newIndex = Math.max(0, Math.min(triviaQuestions.length - 1, index));
+
+  persistSubmissionsForIndex(state, oldIndex);
+
+  const oldCategory = getCategoryForQuestionIndex(oldIndex);
+  const newCategory = getCategoryForQuestionIndex(newIndex);
+
+  state.currentQuestionIndex = newIndex;
   state.submissions = {};
   state.answerMarks = {};
+
+  if (oldCategory !== newCategory) {
+    state.isRoundRevealed = false;
+    state.roundRevealedCategory = null;
+  }
+
+  loadLiveSubmissionsForIndex(state, newIndex);
   resetTimerState(state);
   saveGameState(state);
   return state;
 }
 
-export function revealAnswer(): GameState {
+export function revealRoundAnswers(category: string): GameState {
   const state = getGameState();
-  state.isAnswerRevealed = true;
+  persistSubmissionsForIndex(state, state.currentQuestionIndex);
+  state.isRoundRevealed = true;
+  state.roundRevealedCategory = category;
   saveGameState(state);
   return state;
 }
 
-export function hideAnswer(): GameState {
+export function hideRoundAnswers(): GameState {
   const state = getGameState();
-  state.isAnswerRevealed = false;
+  state.isRoundRevealed = false;
+  state.roundRevealedCategory = null;
   saveGameState(state);
   return state;
 }
@@ -256,8 +392,17 @@ export function hideAnswer(): GameState {
 export function submitAnswer(team: Team | string, answer: string): GameState {
   const state = getGameState();
   const normalizedTeam = normalizeTeam(team);
+  const trimmed = answer.trim();
+  const key = String(state.currentQuestionIndex);
+
   state.submissions = normalizeSubmissions(state.submissions);
-  state.submissions[normalizedTeam] = answer.trim();
+  state.submissions[normalizedTeam] = trimmed;
+
+  if (!state.submissionHistory[key]) {
+    state.submissionHistory[key] = {};
+  }
+  state.submissionHistory[key][normalizedTeam] = trimmed;
+
   saveGameState(state);
   return state;
 }
@@ -285,26 +430,54 @@ export function adjustScore(team: Team | string, delta: number): GameState {
 export function markAnswerCorrect(
   team: Team | string,
   points: number,
+  questionIndex?: number,
 ): GameState {
   const state = getGameState();
+  const index = questionIndex ?? state.currentQuestionIndex;
+  const key = String(index);
   const normalizedTeam = normalizeTeam(team);
-  state.answerMarks = normalizeAnswerMarks(state.answerMarks);
+
+  if (!state.roundAnswerMarks[key]) {
+    state.roundAnswerMarks[key] = {};
+  }
+
   state.scores = normalizeScores(state.scores);
 
-  if (state.answerMarks[normalizedTeam] !== "correct") {
+  if (state.roundAnswerMarks[key][normalizedTeam] !== "correct") {
     state.scores[normalizedTeam] += points;
   }
 
-  state.answerMarks[normalizedTeam] = "correct";
+  state.roundAnswerMarks[key][normalizedTeam] = "correct";
+
+  if (state.currentQuestionIndex === index) {
+    state.answerMarks = normalizeAnswerMarks(state.answerMarks);
+    state.answerMarks[normalizedTeam] = "correct";
+  }
+
   saveGameState(state);
   return state;
 }
 
-export function markAnswerIncorrect(team: Team | string): GameState {
+export function markAnswerIncorrect(
+  team: Team | string,
+  questionIndex?: number,
+): GameState {
   const state = getGameState();
+  const index = questionIndex ?? state.currentQuestionIndex;
+  const key = String(index);
   const normalizedTeam = normalizeTeam(team);
-  state.answerMarks = normalizeAnswerMarks(state.answerMarks);
-  state.answerMarks[normalizedTeam] = "incorrect";
+
+  if (!state.roundAnswerMarks[key]) {
+    state.roundAnswerMarks[key] = {};
+  }
+
+  state.roundAnswerMarks[key][normalizedTeam] = "incorrect";
+
+  if (state.currentQuestionIndex === index) {
+    state.answerMarks = normalizeAnswerMarks(state.answerMarks);
+    state.answerMarks[normalizedTeam] = "incorrect";
+  }
+
   saveGameState(state);
   return state;
 }

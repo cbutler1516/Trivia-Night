@@ -7,27 +7,24 @@ import {
   triviaQuestions,
   totalQuestions,
   resolveQuestionType,
-  type TriviaQuestion,
 } from "@/data/questions";
 import { ImageQuestion } from "@/components/ImageQuestion";
+import { RoundReviewPanel } from "@/components/RoundReviewPanel";
 import { SoundTestPanel } from "@/components/SoundTestPanel";
-import {
-  buildMultipleChoiceOptions,
-  isMultipleChoiceOptionCorrect,
-} from "@/lib/multiple-choice";
+import { buildMultipleChoiceOptions } from "@/lib/multiple-choice";
 import {
   GAME_STATE_UPDATED_EVENT,
   adjustScore,
   getGameState,
   getSubmissionCount,
   getTimerRemaining,
-  hideAnswer,
+  hideRoundAnswers,
   isTimerExpired,
   markAnswerCorrect,
   markAnswerIncorrect,
   pauseTimer,
   resetTimer,
-  revealAnswer,
+  revealRoundAnswers,
   saveGameState,
   setCurrentQuestionIndex,
   startTimer,
@@ -35,20 +32,12 @@ import {
   type GameState,
   type Team,
 } from "@/lib/game-store";
+import { isLastQuestionInCategory } from "@/lib/rounds";
 import {
-  playAnswerRevealed,
   playGameComplete,
   playPointsAwarded,
   playTimerExpired,
 } from "@/lib/sounds";
-
-function getCorrectAnswerLabel(question: TriviaQuestion): string {
-  if (question.statements) {
-    const index = question.answer.toUpperCase().charCodeAt(0) - 65;
-    return `${question.answer}: ${question.statements[index]}`;
-  }
-  return question.answer;
-}
 
 function getDifficulty(points: number): string {
   if (points >= 500) return "Bonus";
@@ -155,7 +144,10 @@ export default function HostPage() {
     if (questionType !== "multiple-choice") return [];
     return buildMultipleChoiceOptions(question);
   }, [question.id, questionType]);
-  const { isAnswerRevealed, scores, submissions, answerMarks } = gameState;
+  const { isRoundRevealed, roundRevealedCategory, scores, submissions, answerMarks } =
+    gameState;
+  const showingRoundReview =
+    isRoundRevealed && roundRevealedCategory === question.category;
   const submissionCount = getSubmissionCount(submissions);
   const timerRemaining = getTimerRemaining(gameState);
   const timerUrgent = timerRemaining <= 10 && gameState.timerRunning;
@@ -205,9 +197,12 @@ export default function HostPage() {
     goToQuestion(currentIndex + 1);
   }
 
-  function handleReveal() {
-    revealAnswer();
-    playAnswerRevealed();
+  function handleToggleRoundReview() {
+    if (showingRoundReview) {
+      hideRoundAnswers();
+      return;
+    }
+    revealRoundAnswers(question.category);
   }
 
   function handleMarkCorrect(team: Team) {
@@ -217,6 +212,19 @@ export default function HostPage() {
 
   function handleMarkIncorrect(team: Team) {
     markAnswerIncorrect(team);
+  }
+
+  function handleRoundMarkCorrect(
+    questionIndex: number,
+    team: Team,
+    points: number,
+  ) {
+    markAnswerCorrect(team, points, questionIndex);
+    playPointsAwarded();
+  }
+
+  function handleRoundMarkIncorrect(questionIndex: number, team: Team) {
+    markAnswerIncorrect(team, questionIndex);
   }
 
   function handleAdjustScore(team: Team, delta: number) {
@@ -363,23 +371,11 @@ export default function HostPage() {
 
         {questionType === "multiple-choice" && (
           <ul className="mt-4 space-y-2">
-            {multipleChoiceOptions.map((option) => {
-              const isCorrect =
-                isAnswerRevealed &&
-                isMultipleChoiceOptionCorrect(question, option);
-              return (
-                <li
-                  key={option}
-                  className={
-                    isCorrect
-                      ? "arcade-option arcade-option--correct"
-                      : "arcade-option"
-                  }
-                >
-                  {option}
-                </li>
-              );
-            })}
+            {multipleChoiceOptions.map((option) => (
+              <li key={option} className="arcade-option">
+                {option}
+              </li>
+            ))}
           </ul>
         )}
 
@@ -387,18 +383,8 @@ export default function HostPage() {
           <ul className="mt-4 space-y-2">
             {question.statements.map((statement, i) => {
               const letter = String.fromCharCode(65 + i);
-              const isCorrect =
-                isAnswerRevealed &&
-                question.answer.toUpperCase() === letter;
               return (
-                <li
-                  key={letter}
-                  className={
-                    isCorrect
-                      ? "arcade-option arcade-option--correct"
-                      : "arcade-option"
-                  }
-                >
+                <li key={letter} className="arcade-option">
                   <span className="mr-2 font-black text-purple-300">{letter}.</span>
                   {statement}
                 </li>
@@ -407,25 +393,21 @@ export default function HostPage() {
           </ul>
         )}
 
-        {isAnswerRevealed ? (
-          <div className="arcade-reveal mt-5">
-            <p className="arcade-eyebrow mb-1 text-green-400">Answer</p>
-            <p className="font-display text-base font-bold text-green-100">
-              {getCorrectAnswerLabel(question)}
-            </p>
-            {question.acceptableAnswers &&
-              question.acceptableAnswers.length > 0 && (
-                <p className="mt-2 text-xs text-green-300/70">
-                  Also accept: {question.acceptableAnswers.join(", ")}
-                </p>
-              )}
-          </div>
-        ) : (
-          <div className="arcade-reveal arcade-reveal--hidden mt-5 text-center">
-            <p className="text-sm text-slate-500">Answer hidden from players</p>
-          </div>
-        )}
+        <div className="arcade-reveal arcade-reveal--hidden mt-5 text-center">
+          <p className="text-sm text-slate-500">
+            Answer hidden until round review
+          </p>
+        </div>
       </article>
+
+      {showingRoundReview && (
+        <RoundReviewPanel
+          gameState={gameState}
+          category={question.category}
+          onMarkCorrect={handleRoundMarkCorrect}
+          onMarkIncorrect={handleRoundMarkIncorrect}
+        />
+      )}
 
       <section className="arcade-card mb-5 p-4">
         <p className="arcade-eyebrow mb-3 text-slate-500">Team Submissions & Scoring</p>
@@ -453,35 +435,31 @@ export default function HostPage() {
         </div>
       </section>
 
-      <div className="mb-4 grid grid-cols-2 gap-3">
+      <div className="mb-4 grid grid-cols-1 gap-3">
         <button
           type="button"
-          onClick={handleReveal}
-          disabled={isAnswerRevealed}
+          onClick={handleToggleRoundReview}
           className="arcade-btn arcade-btn--green py-3.5 text-xs"
         >
-          Reveal Answer
+          {showingRoundReview
+            ? "Hide Round Answers"
+            : `Reveal Round Answers — ${question.category}`}
         </button>
-        <button
-          type="button"
-          onClick={() => hideAnswer()}
-          disabled={!isAnswerRevealed}
-          className="arcade-btn arcade-btn--ghost py-3.5 text-xs"
-        >
-          Hide Answer
-        </button>
+        {isLastQuestionInCategory(currentIndex) && !showingRoundReview && (
+          <p className="text-center text-xs text-slate-400">
+            End of round — reveal answers to score this category.
+          </p>
+        )}
       </div>
 
-      {isAnswerRevealed && (
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={!canGoNext}
-          className="arcade-btn arcade-btn--next mb-4 w-full py-5 text-sm"
-        >
-          Next Question →
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={handleNext}
+        disabled={!canGoNext}
+        className="arcade-btn arcade-btn--next mb-4 w-full py-4 text-sm"
+      >
+        Next Question →
+      </button>
 
       <div className="mb-4 grid grid-cols-2 gap-3">
         <button

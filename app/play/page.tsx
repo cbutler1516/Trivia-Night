@@ -14,7 +14,6 @@ import {
   totalQuestions,
   resolveQuestionType,
   type QuestionType,
-  type TriviaQuestion,
 } from "@/data/questions";
 import { ImageQuestion } from "@/components/ImageQuestion";
 import {
@@ -28,10 +27,8 @@ import {
 } from "@/lib/game-store";
 import {
   buildMultipleChoiceOptions,
-  isMultipleChoiceOptionCorrect,
 } from "@/lib/multiple-choice";
 import {
-  playAnswerRevealed,
   playAnswerSubmitted,
   playTimerExpired,
 } from "@/lib/sounds";
@@ -93,45 +90,6 @@ function difficultyClass(points: number): string {
   return "arcade-difficulty--easy";
 }
 
-function normalizeAnswer(value: string): string {
-  return value.trim().toLowerCase();
-}
-
-function isAnswerCorrect(
-  question: TriviaQuestion,
-  userAnswer: string,
-): boolean {
-  if (question.statements) {
-    return userAnswer.toUpperCase() === question.answer.toUpperCase();
-  }
-  const normalized = normalizeAnswer(userAnswer);
-  const accepted = [question.answer, ...(question.acceptableAnswers ?? [])].map(
-    normalizeAnswer,
-  );
-  return accepted.includes(normalized);
-}
-
-function getCorrectAnswerLabel(question: TriviaQuestion): string {
-  if (question.statements) {
-    const index = question.answer.toUpperCase().charCodeAt(0) - 65;
-    return `${question.answer}: ${question.statements[index]}`;
-  }
-  return question.answer;
-}
-
-function formatSubmissionForDisplay(
-  question: TriviaQuestion,
-  submission: string,
-): string {
-  if (question.statements && submission.length === 1) {
-    const index = submission.toUpperCase().charCodeAt(0) - 65;
-    if (question.statements[index]) {
-      return `${submission.toUpperCase()}: ${question.statements[index]}`;
-    }
-  }
-  return submission;
-}
-
 export default function PlayPage() {
   const [playerSession, setPlayerSession] = useState<PlayerSession | null>(
     null,
@@ -144,7 +102,7 @@ export default function PlayPage() {
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
   const [, setTick] = useState(0);
-  const soundPlayedRef = useRef({ reveal: -1, timer: -1 });
+  const soundPlayedRef = useRef({ timer: -1 });
 
   useEffect(() => {
     setPlayerSession(getPlayerSession());
@@ -189,25 +147,14 @@ export default function PlayPage() {
       : 0;
 
   const isLocked = !!teamSubmission;
-  const isRevealed = gameState.isAnswerRevealed;
-  const isAnswering = !isLocked && !isRevealed && !isTimeUp;
+  const isAnswering = !isLocked && !isTimeUp;
 
   useEffect(() => {
     setTextAnswer("");
     setSelectedChoice(null);
     setSelectedLetter(null);
-    soundPlayedRef.current = { reveal: -1, timer: -1 };
+    soundPlayedRef.current = { timer: -1 };
   }, [currentIndex]);
-
-  useEffect(() => {
-    if (
-      isRevealed &&
-      soundPlayedRef.current.reveal !== currentIndex
-    ) {
-      soundPlayedRef.current.reveal = currentIndex;
-      playAnswerRevealed();
-    }
-  }, [isRevealed, currentIndex]);
 
   useEffect(() => {
     if (isTimeUp && soundPlayedRef.current.timer !== currentIndex) {
@@ -222,20 +169,6 @@ export default function PlayPage() {
       : questionType === "two-lies"
         ? (selectedLetter ?? "")
         : (selectedChoice ?? "");
-
-  const submittedAnswer = teamSubmission ?? userAnswer;
-
-  const isCorrect = isRevealed
-    ? isAnswerCorrect(question, submittedAnswer)
-    : false;
-
-  function getUserAnswerDisplay(): string {
-    const answer = teamSubmission ?? userAnswer;
-    if (questionType === "two-lies" && answer) {
-      return formatSubmissionForDisplay(question, answer);
-    }
-    return answer;
-  }
 
   function handleJoin(e: FormEvent) {
     e.preventDefault();
@@ -446,14 +379,9 @@ export default function PlayPage() {
               const isSelected =
                 selectedLetter === letter ||
                 teamSubmission?.toUpperCase() === letter;
-              const isTrue =
-                isRevealed && question.answer.toUpperCase() === letter;
-              const isWrongPick = isRevealed && isSelected && !isTrue;
 
               let optionClass = "arcade-option";
-              if (isTrue) optionClass += " arcade-option--correct";
-              else if (isWrongPick) optionClass += " arcade-option--incorrect";
-              else if (isSelected) optionClass += " arcade-option--selected-purple";
+              if (isSelected) optionClass += " arcade-option--selected-purple";
 
               return (
                 <li key={letter}>
@@ -479,14 +407,9 @@ export default function PlayPage() {
             {multipleChoiceOptions.map((option) => {
               const isSelected =
                 selectedChoice === option || teamSubmission === option;
-              const isCorrectOption =
-                isRevealed && isMultipleChoiceOptionCorrect(question, option);
-              const isWrongPick = isRevealed && isSelected && !isCorrectOption;
 
               let optionClass = "arcade-option";
-              if (isCorrectOption) optionClass += " arcade-option--correct";
-              else if (isWrongPick) optionClass += " arcade-option--incorrect";
-              else if (isSelected) optionClass += " arcade-option--selected-blue";
+              if (isSelected) optionClass += " arcade-option--selected-blue";
 
               return (
                 <li key={option}>
@@ -536,35 +459,16 @@ export default function PlayPage() {
           </div>
         )}
 
-        {isLocked && !isRevealed && (
+        {isLocked && (
           <>
             <div className="arcade-alert arcade-alert--success">
               <span className="text-lg" aria-hidden>🔒</span>
               Answer Locked In
             </div>
             <p className="text-center text-sm text-slate-400">
-              Waiting for host to reveal...
+              Waiting for next question...
             </p>
           </>
-        )}
-
-        {isRevealed && (
-          <div
-            className={`arcade-result ${isCorrect ? "arcade-result--correct" : "arcade-result--incorrect"}`}
-          >
-            <p className="arcade-eyebrow mb-1 text-slate-400">
-              {isCorrect ? "Correct!" : "Not quite..."}
-            </p>
-            <p className="mb-2 text-sm text-slate-300">
-              Your answer:{" "}
-              <span className="font-semibold text-white">
-                {getUserAnswerDisplay()}
-              </span>
-            </p>
-            <p className="font-display text-base font-bold text-white">
-              Correct answer: {getCorrectAnswerLabel(question)}
-            </p>
-          </div>
         )}
 
         {isAnswering && (
