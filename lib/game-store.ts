@@ -334,6 +334,19 @@ export function saveGameState(state: GameState): void {
   dispatchUpdate();
 }
 
+export function resetGame(): GameState {
+  const state: GameState = {
+    ...DEFAULT_STATE,
+    scores: { ...DEFAULT_STATE.scores },
+    submissions: {},
+    submissionHistory: {},
+    answerMarks: {},
+    roundAnswerMarks: {},
+  };
+  saveGameState(state);
+  return state;
+}
+
 export function resetGameState(): GameState {
   const state = {
     ...DEFAULT_STATE,

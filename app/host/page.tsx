@@ -23,6 +23,7 @@ import {
   markAnswerCorrect,
   markAnswerIncorrect,
   pauseTimer,
+  resetGame,
   resetTimer,
   revealRoundAnswers,
   saveGameState,
@@ -244,6 +245,16 @@ export default function HostPage() {
     const state = getGameState();
     state.scores = { husbands: 0, wives: 0 };
     saveGameState(state);
+  }
+
+  function handleResetGame() {
+    if (
+      window.confirm(
+        "Reset the entire game? This will clear scores, submissions, and return to question 1.",
+      )
+    ) {
+      resetGame();
+    }
   }
 
   const canGoPrevious = currentIndex > 0;
@@ -514,6 +525,14 @@ export default function HostPage() {
         className="arcade-footer-hint mt-4 w-full py-2.5 transition-colors hover:text-red-300"
       >
         Reset Scores
+      </button>
+
+      <button
+        type="button"
+        onClick={handleResetGame}
+        className="arcade-btn mt-3 w-full border border-red-500/60 bg-red-600 py-3.5 text-sm font-bold text-white shadow-[0_0_12px_rgba(220,38,38,0.35)] hover:bg-red-500"
+      >
+        Reset Game
       </button>
     </RetroShell>
   );

@@ -1,10 +1,9 @@
 export type QuestionCategory =
-  | "90s & 2000s Nostalgia"
-  | "Disney"
-  | "Movies & TV"
-  | "Pop Culture & Music"
-  | "Two Lies & A Truth"
-  | "Bonus Round";
+  | "Millennial Artifacts"
+  | "Disney Deep Cuts"
+  | "Movies & TV Connections"
+  | "Pop Culture Chain Reactions"
+  | "Picture Round / Visual Clues";
 
 export type QuestionType =
   | "standard"
@@ -33,8 +32,8 @@ export function resolveQuestionType(question: TriviaQuestion): QuestionType {
   if (question.type) return question.type;
   if (question.statements) return "two-lies";
   if (
-    question.category === "Disney" ||
-    question.category === "Pop Culture & Music"
+    question.category === "Disney Deep Cuts" ||
+    question.category === "Pop Culture Chain Reactions"
   ) {
     return "multiple-choice";
   }
@@ -42,55 +41,46 @@ export function resolveQuestionType(question: TriviaQuestion): QuestionType {
 }
 
 export const triviaQuestions: TriviaQuestion[] = [
-  // ── 90s & 2000s Nostalgia (10) ──────────────────────────────────────────
+  // ── Millennial Artifacts (10) ─────────────────────────────────────────────
   {
     id: 1,
-    category: "90s & 2000s Nostalgia",
+    category: "Millennial Artifacts",
     question:
-      "Your mailbox overflowed with free trial discs promising hundreds of hours online — what internet service turned those CDs into a national punchline?",
+      "This company mailed so many internet CDs that they became coasters, frisbees, and emergency bookmarks. Name it.",
     answer: "AOL",
     acceptableAnswers: ["America Online", "A.O.L."],
     points: 100,
   },
   {
     id: 2,
-    category: "90s & 2000s Nostalgia",
+    category: "Millennial Artifacts",
     question:
-      "What pocket-sized digital pet lived on a keychain and quietly died if you forgot to feed it during math class?",
-    answer: "Tamagotchi",
-    acceptableAnswers: ["Tamogatchi"],
-    points: 100,
-  },
-  {
-    id: 3,
-    category: "90s & 2000s Nostalgia",
-    question:
-      "Which early social network turned friendship into drama with a ranked Top 8 and auto-playing profile songs?",
+      "Before Facebook made relationships official, this website was already causing real-world drama by publicly ranking your closest friends.",
     answer: "MySpace",
     points: 100,
   },
   {
-    id: 4,
-    category: "90s & 2000s Nostalgia",
+    id: 3,
+    category: "Millennial Artifacts",
     question:
-      "Which desktop messenger had you crafting witty away messages, juggling buddy lists, and hearing a door slam when friends signed off?",
+      "You couldn't sign off until the away message slapped — and everyone knew you were still online when the door slammed shut. Name the messenger.",
     answer: "AIM",
     acceptableAnswers: ["AOL Instant Messenger", "AOL IM"],
     points: 100,
   },
   {
-    id: 5,
-    category: "90s & 2000s Nostalgia",
+    id: 4,
+    category: "Millennial Artifacts",
     question:
-      "Before streaming killed date night, what blue-and-yellow rental chain meant a Friday trip down the new-releases wall?",
+      "Friday night meant a pilgrimage past the candy aisle to argue over what was left on the new-releases wall — before late fees ruined Monday morning.",
     answer: "Blockbuster",
-    points: 100,
+    points: 200,
   },
   {
-    id: 6,
-    category: "90s & 2000s Nostalgia",
+    id: 5,
+    category: "Millennial Artifacts",
     question:
-      "What classroom catalog had kids circling Goosebumps paperbacks and erasers, then handing a check to their teacher?",
+      "Classrooms handed out glossy flyers; kids circled paperback horror stories and begged parents for a check by Monday. Name the catalog.",
     answer: "Scholastic Book Order",
     acceptableAnswers: [
       "Scholastic",
@@ -99,59 +89,60 @@ export const triviaQuestions: TriviaQuestion[] = [
       "Scholastic Book Club",
       "Scholastic book fair",
     ],
-    points: 100,
+    points: 200,
+  },
+  {
+    id: 6,
+    category: "Millennial Artifacts",
+    question:
+      "The modem screamed, the phone line went dead, and nobody could call your house until someone logged off. What connection was that?",
+    answer: "Dial-up",
+    acceptableAnswers: ["Dial-up internet", "Dial up", "Modem"],
+    points: 200,
   },
   {
     id: 7,
-    category: "90s & 2000s Nostalgia",
+    category: "Millennial Artifacts",
     question:
-      "Which Nintendo handheld had you trading creatures through a link cable until 'Gotta catch 'em all' took over every recess?",
+      "Roughly one minute of a hit song on a plastic clip, looped onto a backpack — what was this portable music fad called?",
+    answer: "Hit Clips",
+    acceptableAnswers: ["HitClip"],
+    points: 200,
+  },
+  {
+    id: 8,
+    category: "Millennial Artifacts",
+    question:
+      "Feed it, clean it, or find it dead in your pocket after third period. What keychain pet am I describing?",
+    answer: "Tamagotchi",
+    acceptableAnswers: ["Tamogatchi"],
+    points: 100,
+  },
+  {
+    id: 9,
+    category: "Millennial Artifacts",
+    question:
+      "A link cable, playground trades, and a national catchphrase about catching them all — which Nintendo handheld tied it together?",
     answer: "Game Boy",
     acceptableAnswers: ["Pokemon", "Pokémon", "Game Boy Color"],
     points: 200,
   },
   {
-    id: 8,
-    category: "90s & 2000s Nostalgia",
+    id: 10,
+    category: "Millennial Artifacts",
     question:
-      "What fuzzy holiday craze babbled in its own language, blinked at you from the shelf, and demanded to be fed?",
-    answer: "Furby",
-    points: 100,
-  },
-  {
-    id: 9,
-    category: "90s & 2000s Nostalgia",
-    question:
-      "Which computer lab classic had you losing oxen, fording rivers, and dying of dysentery on the way west?",
+      "Computer lab survivors remember broken axles, flooded rivers, and one infamous cause of death on the trail west. Name the game.",
     answer: "Oregon Trail",
     acceptableAnswers: ["The Oregon Trail"],
-    points: 200,
-  },
-  {
-    id: 10,
-    category: "90s & 2000s Nostalgia",
-    question:
-      "What home video format came with magnetic tape, a clunky player, and rental stickers reminding you to 'Be kind, rewind'?",
-    answer: "VHS",
-    acceptableAnswers: ["VHS tape", "VHS tapes", "VCR tape"],
-    points: 200,
+    points: 300,
   },
 
-  // ── Disney (10) ─────────────────────────────────────────────────────────
+  // ── Disney Deep Cuts (10) ─────────────────────────────────────────────────
   {
     id: 11,
-    category: "Disney",
+    category: "Disney Deep Cuts",
     question:
-      "Before reservation apps and influencer brunches, park insiders whispered about an invitation-only dining club hidden above New Orleans Square at Disneyland — what's it called?",
-    answer: "Club 33",
-    points: 100,
-    choices: ["Club 33", "Blue Bayou", "Carnation Cafe", "The Golden Horseshoe"],
-  },
-  {
-    id: 12,
-    category: "Disney",
-    question:
-      "Disneyland's snow-capped peak wasn't just set dressing — it became the world's first tubular steel roller coaster when it opened. Name the ride.",
+      "This Disneyland attraction contains a hidden basketball hoop, no actual summit, and a resident yeti. Name it.",
     answer: "Matterhorn Bobsleds",
     acceptableAnswers: ["The Matterhorn", "Matterhorn"],
     points: 100,
@@ -163,43 +154,70 @@ export const triviaQuestions: TriviaQuestion[] = [
     ],
   },
   {
-    id: 13,
-    category: "Disney",
+    id: 12,
+    category: "Disney Deep Cuts",
     question:
-      "In the Haunted Mansion séance scene, whose disembodied head floats inside the crystal ball while spirits swirl around the room?",
-    answer: "Madame Leota",
-    acceptableAnswers: ["Leota"],
-    points: 100,
-    choices: ["Madame Leota", "Constance Hatchaway", "Ezra", "Gus"],
-  },
-  {
-    id: 14,
-    category: "Disney",
-    question:
-      "In the Pirates of the Caribbean queue, jailed buccaneers spend eternity trying to coax a dog to bring them what?",
-    answer: "Keys",
-    acceptableAnswers: ["The keys", "Jail keys"],
-    points: 100,
-    choices: ["Keys", "Gold coins", "A treasure map", "A chicken leg"],
-  },
-  {
-    id: 15,
-    category: "Disney",
-    question:
-      "Before every ride was a blockbuster franchise, which tropical bird show at Disneyland helped pioneer audio-animatronics in the early 1960s?",
-    answer: "Enchanted Tiki Room",
-    acceptableAnswers: ["Walt Disney's Enchanted Tiki Room", "Tiki Room"],
-    points: 100,
+      "Imagineers needed to move guests between levels without making it feel like transportation. The solution became one of Disneyland's most famous pre-shows. Name the attraction.",
+    answer: "Haunted Mansion",
+    acceptableAnswers: ["The Haunted Mansion"],
+    points: 200,
     choices: [
-      "Enchanted Tiki Room",
-      "Country Bear Jamboree",
-      "Hall of Presidents",
-      "Carousel of Progress",
+      "Haunted Mansion",
+      "Tower of Terror",
+      "Pirates of the Caribbean",
+      "Indiana Jones Adventure",
     ],
   },
   {
+    id: 13,
+    category: "Disney Deep Cuts",
+    question:
+      "Invitation-only, hidden above New Orleans Square, and whispered about like a speakeasy with Mickey-shaped appetizers — name the club.",
+    answer: "Club 33",
+    points: 200,
+    choices: ["Club 33", "Blue Bayou", "Carnation Cafe", "The Golden Horseshoe"],
+  },
+  {
+    id: 14,
+    category: "Disney Deep Cuts",
+    question:
+      "Candlelight, floating instruments, and a disembodied head in a crystal ball — who is the medium in the Haunted Mansion séance?",
+    answer: "Madame Leota",
+    acceptableAnswers: ["Leota"],
+    points: 200,
+    choices: ["Madame Leota", "Constance Hatchaway", "Ezra", "Gus"],
+  },
+  {
+    id: 15,
+    category: "Disney Deep Cuts",
+    question:
+      "Park veterans hunt for three circles arranged like ears — tucked into ride queues, carpets, and murals. What is this Easter egg called?",
+    answer: "Hidden Mickey",
+    acceptableAnswers: ["A Hidden Mickey", "Hidden Mickeys"],
+    points: 100,
+    choices: ["Hidden Mickey", "Pixie Dust", "Disney Vault", "Magic Band"],
+  },
+  {
     id: 16,
-    category: "Disney",
+    category: "Disney Deep Cuts",
+    question:
+      "A cursed Hollywood hotel, a service elevator, and a plunge into another dimension — name the drop ride at Hollywood Studios.",
+    answer: "Tower of Terror",
+    acceptableAnswers: [
+      "The Twilight Zone Tower of Terror",
+      "Hollywood Tower Hotel",
+    ],
+    points: 300,
+    choices: [
+      "Tower of Terror",
+      "Haunted Mansion",
+      "Rock 'n' Roller Coaster",
+      "Expedition Everest",
+    ],
+  },
+  {
+    id: 17,
+    category: "Disney Deep Cuts",
     question:
       "Disney park magic is not built by elves — what is the official name of the team of Imagineers, artists, and engineers behind the attractions?",
     answer: "Imagineering",
@@ -213,22 +231,27 @@ export const triviaQuestions: TriviaQuestion[] = [
     ],
   },
   {
-    id: 17,
-    category: "Disney",
+    id: 18,
+    category: "Disney Deep Cuts",
     question:
-      "Park veterans love spotting a subtle design Easter egg — three circles arranged like Mickey's silhouette. What is it called?",
-    answer: "Hidden Mickey",
-    acceptableAnswers: ["A Hidden Mickey", "Hidden Mickeys"],
-    points: 100,
-    choices: ["Hidden Mickey", "Pixie Dust", "Disney Vault", "Magic Band"],
+      "Before every ride needed a Marvel tie-in, which tropical bird show at Disneyland helped pioneer audio-animatronics?",
+    answer: "Enchanted Tiki Room",
+    acceptableAnswers: ["Walt Disney's Enchanted Tiki Room", "Tiki Room"],
+    points: 200,
+    choices: [
+      "Enchanted Tiki Room",
+      "Country Bear Jamboree",
+      "Hall of Presidents",
+      "Carousel of Progress",
+    ],
   },
   {
-    id: 18,
-    category: "Disney",
+    id: 19,
+    category: "Disney Deep Cuts",
     question:
-      "Inside EPCOT's giant geodesic sphere, what slow-moving ride traces the story of human communication across history?",
+      "Inside EPCOT's giant geodesic sphere, a slow ride traces human communication from cave paintings to the internet. Name the attraction.",
     answer: "Spaceship Earth",
-    points: 100,
+    points: 200,
     choices: [
       "Spaceship Earth",
       "Mission: SPACE",
@@ -237,170 +260,168 @@ export const triviaQuestions: TriviaQuestion[] = [
     ],
   },
   {
-    id: 19,
-    category: "Disney",
-    question:
-      "At Hollywood Studios, what haunted hotel elevator drop ride sends you plunging into the Twilight Zone?",
-    answer: "Tower of Terror",
-    acceptableAnswers: [
-      "The Twilight Zone Tower of Terror",
-      "Hollywood Tower Hotel",
-    ],
-    points: 100,
-    choices: [
-      "Tower of Terror",
-      "Haunted Mansion",
-      "Rock 'n' Roller Coaster",
-      "Expedition Everest",
-    ],
-  },
-  {
     id: 20,
-    category: "Disney",
+    category: "Disney Deep Cuts",
     question:
-      "On Main Street, U.S.A. at Disneyland, a lamp stays perpetually lit in an upstairs window — a quiet tribute to which Disney legend?",
+      "On Main Street, U.S.A., a lamp stays lit in an upstairs window — a quiet tribute to the man who started it all. Who is it?",
     answer: "Walt Disney",
     acceptableAnswers: ["Walt"],
-    points: 200,
+    points: 300,
     choices: ["Walt Disney", "Roy Disney", "Ub Iwerks", "Mickey Mouse"],
   },
 
-  // ── Movies & TV (10) ────────────────────────────────────────────────────
+  // ── Movies & TV Connections (10) ──────────────────────────────────────────
   {
     id: 21,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "In Home Alone, where is the McCallister family flying for Christmas when they accidentally leave Kevin behind?",
-    answer: "Paris",
-    acceptableAnswers: ["Paris, France", "France"],
+      "A Christmas trip to Paris, one forgotten kid, two bumbling burglars, and a series of booby traps that would never pass home insurance — name the film.",
+    answer: "Home Alone",
     points: 100,
   },
   {
     id: 22,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "In Friends, what unusual pet did Ross briefly keep in his apartment — causing chaos for the whole group?",
-    answer: "Marcel",
-    acceptableAnswers: ["A monkey", "The monkey"],
-    points: 100,
+      "A DeLorean, 1.21 gigawatts, and a clock tower struck by lightning — name the time-travel trilogy.",
+    answer: "Back to the Future",
+    points: 200,
   },
   {
     id: 23,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "What movie trilogy features a DeLorean time machine and a scientist named Doc Brown?",
-    answer: "Back to the Future",
-    points: 100,
+      "A paper company, a Dundie award, Kevin's chili on the carpet, and a fun run for a disease Michael barely understands — name the series.",
+    answer: "The Office",
+    acceptableAnswers: ["The Office (US)", "The Office US"],
+    points: 200,
   },
   {
     id: 24,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "In The Office, Michael Scott organizes a charity fun run — what disease is he hilariously trying to raise awareness for?",
-    answer: "Rabies",
+      "Marcel the capuchin, 'Pivot!' on a staircase, and a couch that was never quite the same after it got carried upstairs — name the sitcom.",
+    answer: "Friends",
     points: 100,
   },
   {
     id: 25,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "In SpongeBob SquarePants, what fast-food restaurant does SpongeBob proudly flip patties at?",
-    answer: "The Krusty Krab",
-    acceptableAnswers: ["Krusty Krab"],
-    points: 100,
+      "A Burn Book, pink on Wednesdays, and a word Gretchen Wieners tried to make happen — name the film.",
+    answer: "Mean Girls",
+    points: 200,
   },
   {
     id: 26,
-    category: "Movies & TV",
+    category: "Movies & TV Connections",
     question:
-      "In Mean Girls, what day of the week do the Plastics famously wear pink?",
-    answer: "Wednesday",
-    acceptableAnswers: ["Wednesdays"],
-    points: 100,
-  },
-  {
-    id: 27,
-    category: "Movies & TV",
-    question:
-      "What reality competition show drops contestants on a remote island with the motto 'Outwit, Outplay, Outlast'?",
+      "Outwit, outplay, outlast — and a torch snuffed at tribal council when your torch goes out, so do you. Name the show.",
     answer: "Survivor",
     points: 100,
   },
   {
-    id: 28,
-    category: "Movies & TV",
+    id: 27,
+    category: "Movies & TV Connections",
     question:
-      "In The Matrix, which colored pill does Neo take to learn the truth about the world?",
-    answer: "Red pill",
-    acceptableAnswers: ["Red", "The red pill"],
-    points: 100,
+      "Bullet time, a red pill, and a spoon that isn't real — name the sci-fi film that made everyone question the simulation.",
+    answer: "The Matrix",
+    points: 200,
   },
   {
-    id: 29,
-    category: "Movies & TV",
+    id: 28,
+    category: "Movies & TV Connections",
     question:
-      "In Harry Potter, what hidden platform at King's Cross do students use to catch the Hogwarts Express?",
+      "A platform hidden between two ordinary ones, a brick wall you walk through, and a scarlet steam engine waiting on the other side — name the platform.",
     answer: "Platform 9 and 3/4",
     acceptableAnswers: [
       "Platform 9 3/4",
       "Platform nine and three quarters",
       "9 and 3/4",
     ],
-    points: 100,
+    points: 300,
   },
   {
-    id: 30,
-    category: "Movies & TV",
+    id: 29,
+    category: "Movies & TV Connections",
     question:
-      "In Seinfeld, what made-up holiday does George's dad invent with feats of strength and an airing of grievances?",
+      "An aluminum pole, feats of strength, and grievances aired over a meatloaf dinner — name the Seinfeld holiday.",
     answer: "Festivus",
     points: 200,
   },
+  {
+    id: 30,
+    category: "Movies & TV Connections",
+    question:
+      "Michael Scott ran for miles to cure rabies, Pam Beesly married Jim twice, and Dwight Schrute owns a beet farm — what disease was that fun run actually for?",
+    answer: "Rabies",
+    points: 300,
+  },
 
-  // ── Pop Culture & Music (10) ────────────────────────────────────────────
+  // ── Pop Culture Chain Reactions (10) ──────────────────────────────────────
   {
     id: 31,
-    category: "Pop Culture & Music",
+    category: "Pop Culture Chain Reactions",
     question:
-      "At every late-'90s school dance, couples argued over lyrics that might not even make sense — which boy band gave us 'I Want It That Way'?",
+      "Carson Daly, a countdown in Times Square, and teenagers sprinting home after school — what MTV show decided what video was number one?",
+    answer: "TRL",
+    acceptableAnswers: ["Total Request Live", "Total Request Live (TRL)"],
+    points: 200,
+    choices: ["TRL", "106 & Park", "Direct Effect", "Headbangers Ball"],
+  },
+  {
+    id: 32,
+    category: "Pop Culture Chain Reactions",
+    question:
+      "Dorm rooms, shared MP3s, record-label panic, and a courtroom that changed how we buy music — name the file-sharing service that started the chain reaction.",
+    answer: "Napster",
+    points: 200,
+    choices: ["Limewire", "Kazaa", "Napster", "iTunes"],
+  },
+  {
+    id: 33,
+    category: "Pop Culture Chain Reactions",
+    question:
+      "One boy band's lyrics launched a thousand lunch-table debates about what 'that way' even meant — name the group.",
     answer: "Backstreet Boys",
     acceptableAnswers: ["BSB", "The Backstreet Boys"],
     points: 100,
     choices: ["*NSYNC", "98 Degrees", "Backstreet Boys", "New Kids on the Block"],
   },
   {
-    id: 32,
-    category: "Pop Culture & Music",
+    id: 34,
+    category: "Pop Culture Chain Reactions",
     question:
-      "Which pop star stepped onto the 2001 American Music Awards red carpet in head-to-toe denim — perfectly matching Justin Timberlake and launching an eternal meme?",
+      "Denim on denim, two pop exes, one red carpet — who matched Justin Timberlake stitch for stitch and broke the internet before that was a phrase?",
     answer: "Britney Spears",
     acceptableAnswers: ["Britney"],
-    points: 100,
+    points: 200,
     choices: ["Christina Aguilera", "Pink", "Britney Spears", "Shakira"],
   },
   {
-    id: 33,
-    category: "Pop Culture & Music",
+    id: 35,
+    category: "Pop Culture Chain Reactions",
     question:
-      "Before Spotify rewired how we listen, what file-sharing service had college kids trading MP3s in dorm rooms — while record labels scrambled to sue?",
-    answer: "Napster",
-    points: 100,
-    choices: ["Limewire", "Kazaa", "Napster", "iTunes"],
-  },
-  {
-    id: 34,
-    category: "Pop Culture & Music",
-    question:
-      "Which R&B trio turned dating standards into late-'90s anthems — telling us what they didn't want in a man and warning us not to chase 'Waterfalls'?",
+      "First they told you what kind of man to avoid. Then they warned you about chasing waterfalls. Name the trio.",
     answer: "TLC",
     points: 100,
     choices: ["Destiny's Child", "En Vogue", "TLC", "SWV"],
   },
   {
-    id: 35,
-    category: "Pop Culture & Music",
+    id: 36,
+    category: "Pop Culture Chain Reactions",
     question:
-      "Which wedding-reception dance had entire tables sliding their hands down an invisible wall and hopping in sync — whether they volunteered or not?",
+      "Pool cabana tours, sneaker closets, and refrigerators judged from a safe distance — name the MTV show that started the mansion-tour craze.",
+    answer: "MTV Cribs",
+    acceptableAnswers: ["Cribs"],
+    points: 200,
+    choices: ["Pimp My Ride", "Room Raiders", "MTV Cribs", "TRL"],
+  },
+  {
+    id: 37,
+    category: "Pop Culture Chain Reactions",
+    question:
+      "Your uncle at every wedding, an invisible wall, and a hop-step everyone pretended to know — name the dance.",
     answer: "The Macarena",
     acceptableAnswers: ["Macarena"],
     points: 100,
@@ -412,194 +433,157 @@ export const triviaQuestions: TriviaQuestion[] = [
     ],
   },
   {
-    id: 36,
-    category: "Pop Culture & Music",
+    id: 38,
+    category: "Pop Culture Chain Reactions",
     question:
-      "Which Seattle grunge band's breakthrough hit — opening with that instantly recognizable riff — helped flip MTV from hair metal to flannel overnight?",
+      "Flannel replaced hairspray, MTV got louder, and one Pacific Northwest riff made an entire generation stop ironing their shirts — name the band.",
     answer: "Nirvana",
-    points: 100,
+    points: 200,
     choices: ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
   },
   {
-    id: 37,
-    category: "Pop Culture & Music",
-    question:
-      "Before Instagram Stories, what MTV series invited us into celebrity mansions to judge their pool slides, sneaker walls, and fridge contents?",
-    answer: "MTV Cribs",
-    acceptableAnswers: ["Cribs"],
-    points: 200,
-    choices: ["Pimp My Ride", "Room Raiders", "MTV Cribs", "TRL"],
-  },
-  {
-    id: 38,
-    category: "Pop Culture & Music",
-    question:
-      "Which artist had us spelling out 'ella, ella, eh, eh, eh' under umbrellas — and later owning the charts with 'We Found Love' and 'Diamonds'?",
-    answer: "Rihanna",
-    points: 100,
-    choices: ["Beyoncé", "Lady Gaga", "Rihanna", "Katy Perry"],
-  },
-  {
     id: 39,
-    category: "Pop Culture & Music",
+    category: "Pop Culture Chain Reactions",
     question:
-      "Which rapper borrowed Queen and David Bowie's bass line, blew up in the early '90s with 'Ice Ice Baby,' and briefly became a pop-culture punchline?",
+      "A borrowed Queen bass line, a novelty rap hit, and a career that became an instant punchline — who was it?",
     answer: "Vanilla Ice",
     acceptableAnswers: ["Rob Van Winkle"],
-    points: 200,
+    points: 300,
     choices: ["MC Hammer", "Sir Mix-A-Lot", "Vanilla Ice", "Snow"],
   },
   {
     id: 40,
-    category: "Pop Culture & Music",
+    category: "Pop Culture Chain Reactions",
     question:
-      "Which late-night segment strapped celebrities into a car for surprise sing-alongs — clips that dominated your social feed for years?",
-    answer: "Carpool Karaoke",
-    acceptableAnswers: ["James Corden Carpool Karaoke"],
-    points: 200,
-    choices: [
-      "Lip Sync Battle",
-      "Sing Along with Mic",
-      "Carpool Karaoke",
-      "Karaoke Cab",
-    ],
+      "Detroit trailer parks, rap battles, and a film loosely about losing yourself — name the artist at the center of the chain.",
+    answer: "Eminem",
+    acceptableAnswers: ["Marshall Mathers", "Slim Shady"],
+    points: 300,
+    choices: ["Eminem", "50 Cent", "Dr. Dre", "Jay-Z"],
   },
 
-  // ── Two Lies & A Truth (5) ───────────────────────────────────────────────
+  // ── Picture Round / Visual Clues (10) ─────────────────────────────────────
   {
     id: 41,
-    category: "Two Lies & A Truth",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Two of these are LIES. One is the TRUTH. Which statement is TRUE?",
-    statements: [
-      "In Titanic, Jack and Rose both survive and move to New York together.",
-      "Rose drops the Heart of the Ocean necklace into the ocean at the end of the film.",
-      "The Titanic sinks because it collides with a whale, not an iceberg.",
-    ],
-    answer: "B",
+      "What courteous instruction did every polite renter follow before dropping this back in the return slot?",
+    answer: "Rewind it",
     acceptableAnswers: [
-      "Rose drops the Heart of the Ocean necklace into the ocean at the end of the film.",
-      "Statement B",
-      "The second one",
+      "Rewind",
+      "Be kind rewind",
+      "Be kind, rewind",
+      "Rewind the tape",
     ],
-    points: 300,
+    points: 100,
+    imageUrl: "/images/questions/VHS.png",
+    imageAlt: "A VHS tape in a rental case",
   },
   {
     id: 42,
-    category: "Two Lies & A Truth",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Two of these are LIES. One is the TRUTH. Which statement is TRUE?",
-    statements: [
-      "Many iPod models used a click wheel to scroll through songs.",
-      "The original iPod could only play songs downloaded illegally from Napster.",
-      "The iPod Shuffle was famous for having the largest screen of any iPod.",
-    ],
-    answer: "A",
-    acceptableAnswers: [
-      "Many iPod models used a click wheel to scroll through songs.",
-      "Statement A",
-      "The first one",
-    ],
-    points: 300,
+      "What business model — watch anything from your couch for one flat monthly fee — eventually put this storefront out of business?",
+    answer: "Streaming",
+    acceptableAnswers: ["Netflix", "Streaming services", "Video streaming"],
+    points: 200,
+    imageUrl: "/images/questions/Blockbuster.png",
+    imageAlt: "A Blockbuster video store storefront",
   },
   {
     id: 43,
-    category: "Two Lies & A Truth",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Two of these are LIES. One is the TRUTH. Which statement is TRUE?",
-    statements: [
-      "In The Office (US), Michael Scott once burned his foot on a George Foreman grill while cooking bacon in bed.",
-      "Dwight Schrute is secretly a vampire who only works nights.",
-      "Dunder Mifflin is a paper company located in downtown Manhattan.",
-    ],
-    answer: "A",
-    acceptableAnswers: [
-      "In The Office (US), Michael Scott once burned his foot on a George Foreman grill while cooking bacon in bed.",
-      "Statement A",
-      "The first one",
-    ],
-    points: 300,
+      "What accessory did you need to trade creatures with the kid sitting next to you on the bus?",
+    answer: "Link cable",
+    acceptableAnswers: ["A link cable", "Game Link Cable", "Link Cable"],
+    points: 200,
+    imageUrl: "/images/questions/Gameboy.png",
+    imageAlt: "A classic Nintendo Game Boy handheld",
   },
   {
     id: 44,
-    category: "Two Lies & A Truth",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Two of these are LIES. One is the TRUTH. Which statement is TRUE?",
-    statements: [
-      "Dunkaroos were cookies you dipped into frosting — and kids went wild for them.",
-      "Gushers were so mild that nobody ever argued about the flavor burst.",
-      "Lunchables originally came with a full hot meal and a tiny microwave.",
-    ],
-    answer: "A",
-    acceptableAnswers: [
-      "Dunkaroos were cookies you dipped into frosting — and kids went wild for them.",
-      "Statement A",
-      "The first one",
-    ],
-    points: 300,
+      "Before it learned English, this toy babbled in its own language. What was that language called?",
+    answer: "Furbish",
+    acceptableAnswers: ["Furbish language"],
+    points: 200,
+    imageUrl: "/images/questions/Furby.png",
+    imageAlt: "A Furby animatronic toy",
   },
   {
     id: 45,
-    category: "Two Lies & A Truth",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Two of these are LIES. One is the TRUTH. Which statement is TRUE?",
-    statements: [
-      "Costco's famous hot dog and soda combo has famously stayed cheap for decades.",
-      "IKEA instructions never include extra screws — every piece is always used.",
-      "Amazon Prime originally launched with free same-hour drone delivery only.",
-    ],
-    answer: "A",
-    acceptableAnswers: [
-      "Costco's famous hot dog and soda combo has famously stayed cheap for decades.",
-      "Statement A",
-      "The first one",
-    ],
+      "What three-word death message became this computer lab classic's most famous meme?",
+    answer: "You have died of dysentery",
+    acceptableAnswers: ["Dysentery", "Died of dysentery"],
     points: 300,
+    imageUrl: "/images/questions/Oregon Trail.png",
+    imageAlt: "Oregon Trail computer game screen",
   },
-
-  // ── Bonus Round (5) ───────────────────────────────────────────────────────
   {
     id: 46,
-    category: "Bonus Round",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "In what courtroom drama does Jack Nicholson yell 'You can't handle the truth!'?",
-    answer: "A Few Good Men",
-    points: 500,
+      "Ignore the beeping during a test and this pocket pet's fate was sealed. What happened to it?",
+    answer: "It dies",
+    acceptableAnswers: ["It died", "Death", "It dies", "Your pet dies"],
+    points: 100,
+    imageUrl: "/images/questions/Tamogatchi.png",
+    imageAlt: "A Tamagotchi virtual pet keychain",
   },
   {
     id: 47,
-    category: "Bonus Round",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "What Nintendo console brought us Mario Kart 64, GoldenEye 007, and four-controller multiplayer parties?",
-    answer: "Nintendo 64",
-    acceptableAnswers: ["N64", "N64 console"],
-    points: 500,
+      "Four controller ports made this console the undisputed king of living-room multiplayer parties. How many ports did it have?",
+    answer: "Four",
+    acceptableAnswers: ["4", "Four ports", "4 controller ports"],
+    points: 300,
+    imageUrl: "/images/questions/N64.png",
+    imageAlt: "A Nintendo 64 console with controllers",
   },
   {
     id: 48,
-    category: "Bonus Round",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "What band sang 'Mr. Brightside,' one of the most streamed rock songs of all time?",
-    answer: "The Killers",
-    acceptableAnswers: ["Killers"],
-    points: 500,
+      "Kids circled items in these classroom flyers and handed a check to their teacher. What were they ordering?",
+    answer: "Books",
+    acceptableAnswers: ["Book order", "Scholastic books", "Paperbacks"],
+    points: 100,
+    imageUrl: "/images/questions/Book order.png",
+    imageAlt: "A Scholastic book order catalog",
   },
   {
     id: 49,
-    category: "Bonus Round",
+    category: "Picture Round / Visual Clues",
+    type: "image",
     question:
-      "Before GPS lived on every phone, what kind of device did people suction-cup to their windshield and argue with when it said 'Recalculating'?",
-    answer: "GPS",
-    acceptableAnswers: ["Garmin", "TomTom", "GPS device", "Standalone GPS"],
-    points: 500,
+      "When this service connected, a famous voice told you your inbox had arrived. What was the catchphrase?",
+    answer: "You've got mail",
+    acceptableAnswers: ["Youve got mail", "You've Got Mail"],
+    points: 300,
+    imageUrl: "/images/questions/AOL.png",
+    imageAlt: "An AOL free trial CD mailer",
   },
   {
     id: 50,
-    category: "Bonus Round",
+    category: "Picture Round / Visual Clues",
     question:
-      "What blockbuster made us all think twice about going in the ocean — with a two-note theme everyone still hums?",
-    answer: "Jaws",
-    points: 500,
+      "Sticky rental sleeves, magnetic tape, and a clunky player under the TV — what home video format tied it all together?",
+    answer: "VHS",
+    acceptableAnswers: ["VHS tape", "VHS tapes", "VCR tape"],
+    points: 200,
   },
 ];
 
@@ -613,12 +597,11 @@ export const questionsByCategory = triviaQuestions.reduce(
 );
 
 export const categoryOrder: QuestionCategory[] = [
-  "90s & 2000s Nostalgia",
-  "Disney",
-  "Movies & TV",
-  "Pop Culture & Music",
-  "Two Lies & A Truth",
-  "Bonus Round",
+  "Millennial Artifacts",
+  "Disney Deep Cuts",
+  "Movies & TV Connections",
+  "Pop Culture Chain Reactions",
+  "Picture Round / Visual Clues",
 ];
 
 export const totalQuestions = triviaQuestions.length;
