@@ -22,12 +22,26 @@ const particles = Array.from({ length: 28 }, (_, i) => ({
 export default function Home() {
   return (
     <div className="arcade-page flex min-h-screen flex-col">
+      <div className="arcade-hero-video-wrap" aria-hidden>
+        <video
+          className="arcade-hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src="/videos/retro-loop.mp4" type="video/mp4" />
+        </video>
+        <div className="arcade-hero-overlay" />
+      </div>
+
       <div className="arcade-orb arcade-orb--blue" aria-hidden />
       <div className="arcade-orb arcade-orb--purple" aria-hidden />
       <div className="arcade-orb arcade-orb--pink" aria-hidden />
       <div className="arcade-scan-beam" aria-hidden />
 
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1]">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[3]">
         {particles.map((p) => (
           <span
             key={p.id}
@@ -48,7 +62,7 @@ export default function Home() {
         ))}
       </div>
 
-      <main className="arcade-main">
+      <main className="arcade-main relative z-10">
         <div className="arcade-blockbuster-stripe mb-8" />
 
         <div className="mb-8 flex justify-center">
