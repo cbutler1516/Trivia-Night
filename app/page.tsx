@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { HomeMusicToggle } from "@/components/HomeMusicToggle";
 
 const categories = [
   "90s & 2000s Nostalgia",
@@ -63,6 +64,10 @@ export default function Home() {
       </div>
 
       <main className="arcade-main relative z-10">
+        <div className="mb-4 flex justify-end">
+          <HomeMusicToggle />
+        </div>
+
         <div className="arcade-blockbuster-stripe mb-8" />
 
         <div className="mb-8 flex justify-center">

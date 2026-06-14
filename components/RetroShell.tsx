@@ -1,6 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
+import { BackgroundVideo } from "@/components/BackgroundVideo";
 
 const particles = Array.from({ length: 16 }, (_, i) => ({
   id: i,
@@ -15,6 +16,7 @@ const particles = Array.from({ length: 16 }, (_, i) => ({
 export function RetroShell({ children }: { children: ReactNode }) {
   return (
     <div className="arcade-page flex min-h-screen flex-col">
+      <BackgroundVideo />
       <div className="arcade-orb arcade-orb--blue" aria-hidden />
       <div className="arcade-orb arcade-orb--purple" aria-hidden />
       <div className="arcade-orb arcade-orb--pink" aria-hidden />

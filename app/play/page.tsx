@@ -8,7 +8,9 @@ import {
   type FormEvent,
 } from "react";
 import { MuteToggle } from "@/components/MuteToggle";
+import { HomeMusicToggle } from "@/components/HomeMusicToggle";
 import { RetroShell } from "@/components/RetroShell";
+import { pauseHomeMusic } from "@/lib/home-music";
 import {
   triviaQuestions,
   totalQuestions,
@@ -202,6 +204,12 @@ export default function PlayPage() {
     }
   }, [gameState.teamCaptains, playerSession]);
 
+  useEffect(() => {
+    if (playerSession) {
+      pauseHomeMusic();
+    }
+  }, [playerSession]);
+
   const userAnswer =
     questionType === "standard" || questionType === "image"
       ? textAnswer
@@ -283,6 +291,10 @@ export default function PlayPage() {
       <RetroShell>
         <div className="flex flex-1 flex-col justify-center">
           <header className="mb-8 text-center">
+            <div className="mb-4 flex items-center justify-center gap-2">
+              <HomeMusicToggle />
+              <MuteToggle />
+            </div>
             <p className="arcade-eyebrow mb-3">Join the Game</p>
             <h1 className="arcade-title arcade-title-glow text-3xl">
               The Millennial Showdown
@@ -365,9 +377,9 @@ export default function PlayPage() {
             </button>
           </form>
 
-          <div className="mt-6 flex justify-center">
-            <MuteToggle />
-          </div>
+          <p className="mt-4 text-center text-xs text-slate-500">
+            Tap Music On for background ambience.
+          </p>
         </div>
       </RetroShell>
     );

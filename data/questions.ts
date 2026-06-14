@@ -46,7 +46,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 1,
     category: "Millennial Artifacts",
     question:
-      "Your family had a stack of free trial discs that slowly became coasters. When the computer finally connected, a voice announced the most exciting moment of the week. Name the service.",
+      "Somewhere in the junk drawer: shiny discs nobody requested, a connection sound like an alien argument, and one voice that made checking email feel like winning the lottery.",
     answer: "AOL",
     acceptableAnswers: ["America Online", "A.O.L."],
     points: 100,
@@ -55,7 +55,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 2,
     category: "Millennial Artifacts",
     question:
-      "Before Facebook made relationships official, this website was already causing real-world drama by publicly ranking your closest friends.",
+      "Facebook eventually let you make it official — but this site was already ending friendships over profile songs and who made the public cut for top eight.",
     answer: "MySpace",
     points: 100,
   },
@@ -63,7 +63,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 3,
     category: "Millennial Artifacts",
     question:
-      "You couldn't sign off until the away message slapped — and everyone knew you were still online when the door slammed shut. Name the messenger.",
+      "Away messages were comedy, drama, and passive aggression in one line — and when the door slammed, everyone at the sleepover knew exactly who just logged on.",
     answer: "AIM",
     acceptableAnswers: ["AOL Instant Messenger", "AOL IM"],
     points: 100,
@@ -72,7 +72,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 4,
     category: "Millennial Artifacts",
     question:
-      "Friday night meant a pilgrimage past the candy aisle to argue over what was left on the new-releases wall — before late fees ruined Monday morning.",
+      "You went for the movie, stayed for the Sour Patch Kids, and drove home praying Monday morning wouldn't include a lecture about late fees.",
     answer: "Blockbuster",
     points: 200,
   },
@@ -80,7 +80,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 5,
     category: "Millennial Artifacts",
     question:
-      "What annual reading program convinced millions of children that books could somehow be exchanged for pizza?",
+      "Read enough pages and suddenly literature had a reward better than a gold star — a personal pan deal that made classmates wildly jealous.",
     answer: "Book It!",
     acceptableAnswers: ["Book It", "BOOK IT!", "Pizza Hut Book It"],
     points: 200,
@@ -89,7 +89,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 6,
     category: "Millennial Artifacts",
     question:
-      "The modem screamed, the phone line went dead, and nobody could call your house until someone logged off. What connection was that?",
+      "Mom couldn't call. Dad couldn't call. The whole house was held hostage until someone either finished uploading or finally signed off.",
     answer: "Dial-up",
     acceptableAnswers: ["Dial-up internet", "Dial up", "Modem"],
     points: 200,
@@ -98,7 +98,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 7,
     category: "Millennial Artifacts",
     question:
-      "Before Spotify, before iTunes, and before most people owned MP3 players, millions of teenagers downloaded music from this service while hoping they weren't also downloading a computer virus.",
+      "Before playlists lived in the cloud, teenagers traded MP3s like mixtapes and prayed the download wasn't also installing something nasty on the family PC.",
     answer: "Napster",
     acceptableAnswers: ["Napster.com"],
     points: 200,
@@ -107,7 +107,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 8,
     category: "Millennial Artifacts",
     question:
-      "Teachers banned them from classrooms. Kids hid them in pencil cases anyway. When the tiny screen started beeping during a test, you knew you'd forgotten to feed something important — name the keychain pet craze.",
+      "It lived on a keychain, ate through button presses, and turned a quiet math class into a very public guilt trip.",
     answer: "Tamagotchi",
     acceptableAnswers: ["Tamogatchi"],
     points: 100,
@@ -116,7 +116,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 9,
     category: "Millennial Artifacts",
     question:
-      "Playground negotiations, a link cable, and trades that could make or break your social status at recess — which Nintendo handheld turned schoolyards into trading floors?",
+      "Recess became Wall Street. All you needed was a cord, a cartridge, and the confidence to trade away someone's favorite.",
     answer: "Game Boy",
     acceptableAnswers: ["Pokemon", "Pokémon", "Game Boy Color"],
     points: 200,
@@ -125,7 +125,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 10,
     category: "Millennial Artifacts",
     question:
-      "Computer lab survivors remember broken axles, flooded rivers, and one infamous cause of death on the trail west. Name the game.",
+      "The wagon left Independence. The river looked fine. Three clicks later, everyone is arguing about whether you should have caulked instead.",
     answer: "Oregon Trail",
     acceptableAnswers: ["The Oregon Trail"],
     points: 300,
@@ -136,7 +136,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 11,
     category: "Disney Deep Cuts",
     question:
-      "Cast Members have been known to shoot hoops inside this snow-capped peak — which has no real summit, tubular steel history, and a yeti waiting in the dark. Name the Disneyland ride.",
+      "Disney built a Swiss peak tall enough for bobsleds but oddly short on actual climbing — Cast Members shoot hoops inside, and something abominable waits in the dark.",
     answer: "Matterhorn Bobsleds",
     acceptableAnswers: ["The Matterhorn", "Matterhorn"],
     points: 100,
@@ -151,7 +151,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 12,
     category: "Disney Deep Cuts",
     question:
-      "Your Ghost Host welcomes you into a room where portraits stretch, chandeliers rise, and nobody notices they're quietly being lowered toward their doom-wagon below. Name the attraction.",
+      "You think you're admiring portrait frames in a drawing room. By the time the lights return, you've already descended toward doom-wagons without taking a single visible step.",
     answer: "Haunted Mansion",
     acceptableAnswers: ["The Haunted Mansion"],
     points: 200,
@@ -166,7 +166,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 13,
     category: "Disney Deep Cuts",
     question:
-      "Hidden above a beloved restaurant in New Orleans Square is a door most guests will never pass through — invitation only, whispered about for decades, and still carrying a legendary waitlist. Name the club.",
+      "There's fine dining in New Orleans Square — and then there's the upstairs place your cousin swears exists but nobody you know has ever walked through.",
     answer: "Club 33",
     points: 200,
     choices: ["Club 33", "Blue Bayou", "Carnation Cafe", "The Golden Horseshoe"],
@@ -175,7 +175,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 14,
     category: "Disney Deep Cuts",
     question:
-      "Candlelight, floating instruments, and a disembodied head in a crystal ball — who is the medium in the Haunted Mansion séance?",
+      "Instruments hover. Candles flicker. In the séance circle, one woman's face floats inside glass while the others keep bumping into you in the dark.",
     answer: "Madame Leota",
     acceptableAnswers: ["Leota"],
     points: 200,
@@ -185,7 +185,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 15,
     category: "Disney Deep Cuts",
     question:
-      "Park veterans hunt for three circles arranged like ears — tucked into ride queues, carpets, and murals. What is this Easter egg called?",
+      "Imagineers hide a three-circle signature in carpets, queues, and murals — park veterans treat spotting one like finding buried treasure.",
     answer: "Hidden Mickey",
     acceptableAnswers: ["A Hidden Mickey", "Hidden Mickeys"],
     points: 100,
@@ -195,7 +195,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 16,
     category: "Disney Deep Cuts",
     question:
-      "A cursed Hollywood hotel, a service elevator, and a plunge into another dimension — name the drop ride at Hollywood Studios.",
+      "You check into a Hollywood hotel that hasn't had happy guests since the 1930s. The bellhop smiles. The elevator drops you somewhere the Twilight Zone would recognize.",
     answer: "Tower of Terror",
     acceptableAnswers: [
       "The Twilight Zone Tower of Terror",
@@ -213,7 +213,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 17,
     category: "Disney Deep Cuts",
     question:
-      "Disney park magic is not built by elves — what is the official name of the team of Imagineers, artists, and engineers behind the attractions?",
+      "Blueprints, animatronics, forced perspective, and rides that feel impossible — this division's name sounds like imagination and engineering had a very serious meeting.",
     answer: "Imagineering",
     acceptableAnswers: ["Walt Disney Imagineering", "Disney Imagineering"],
     points: 200,
@@ -228,7 +228,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 18,
     category: "Disney Deep Cuts",
     question:
-      "Before every ride needed a Marvel tie-in, which tropical bird show at Disneyland helped pioneer audio-animatronics?",
+      "Before superheroes had their own lands, guests cooled off with singing tropical birds in a show Walt once used to test robotic performers.",
     answer: "Enchanted Tiki Room",
     acceptableAnswers: ["Walt Disney's Enchanted Tiki Room", "Tiki Room"],
     points: 200,
@@ -243,7 +243,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 19,
     category: "Disney Deep Cuts",
     question:
-      "Inside EPCOT's giant geodesic sphere, a slow ride traces human communication from cave paintings to the internet. Name the attraction.",
+      "EPCOT's giant golf ball isn't just architecture — step inside and you'll travel from cave walls to fiber optics without leaving your seat.",
     answer: "Spaceship Earth",
     points: 200,
     choices: [
@@ -257,7 +257,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 20,
     category: "Disney Deep Cuts",
     question:
-      "On Main Street, U.S.A., a lamp stays lit in an upstairs window — a quiet tribute to the man who started it all. Who is it?",
+      "Every day on Main Street, a light stays on upstairs — not for show, but as if the park's founder might still be working late.",
     answer: "Walt Disney",
     acceptableAnswers: ["Walt"],
     points: 300,
@@ -269,7 +269,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 21,
     category: "Movies & TV Connections",
     question:
-      "A Christmas trip to Paris, one forgotten kid, two bumbling burglars, and a series of booby traps that would never pass home insurance — name the film.",
+      "Paris in the winter. A mansion full of traps. Two criminals learning the hard way that the smallest McCallister is the most dangerous.",
     answer: "Home Alone",
     points: 100,
   },
@@ -277,7 +277,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 22,
     category: "Movies & TV Connections",
     question:
-      "A DeLorean, 1.21 gigawatts, and a clock tower struck by lightning — name the time-travel trilogy.",
+      "Doc says the flux capacitor is what makes time travel possible. Marty says nobody calls him chicken. The clock tower says you're cutting this very close.",
     answer: "Back to the Future",
     points: 200,
   },
@@ -285,7 +285,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 23,
     category: "Movies & TV Connections",
     question:
-      "A paper company, a Dundie award, Kevin's chili on the carpet, and a fun run for a disease Michael barely understands — name the series.",
+      "Sales reports nobody reads, awards nobody earned, and one branch manager whose passion project involves running until a completely misunderstood disease gets awareness.",
     answer: "The Office",
     acceptableAnswers: ["The Office (US)", "The Office US"],
     points: 200,
@@ -294,7 +294,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 24,
     category: "Movies & TV Connections",
     question:
-      "Marcel the capuchin, 'Pivot!' on a staircase, and a couch that was never quite the same after it got carried upstairs — name the sitcom.",
+      "A monkey in a Manhattan apartment. A couch that required geometry. Six adults somehow still unable to afford splitting apps fairly.",
     answer: "Friends",
     points: 100,
   },
@@ -302,7 +302,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 25,
     category: "Movies & TV Connections",
     question:
-      "A Burn Book, pink on Wednesdays, and a word Gretchen Wieners tried to make happen — name the film.",
+      "North Shore High has cliques, gossip, and one plastic rule about a weekday color that still gets quoted at brunch.",
     answer: "Mean Girls",
     points: 200,
   },
@@ -310,7 +310,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 26,
     category: "Movies & TV Connections",
     question:
-      "Stranded on an island, alliances shift at camp, and one ritual with fire decides who goes home — name the reality show that turned 'blindsided' into living-room vocabulary.",
+      "Forty days, one torch, and a phrase that forever changed how office coworkers say they got betrayed in a meeting.",
     answer: "Survivor",
     points: 100,
   },
@@ -318,7 +318,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 27,
     category: "Movies & TV Connections",
     question:
-      "Bullet time, a red pill, and a spoon that isn't real — name the sci-fi film that made everyone question the simulation.",
+      "Take the blue and stay comfortable. Take the red and discover your entire life might be a lie — plus bent spoons and very cool leather.",
     answer: "The Matrix",
     points: 200,
   },
@@ -326,7 +326,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 28,
     category: "Movies & TV Connections",
     question:
-      "A platform hidden between two ordinary ones, a brick wall you walk through, and a scarlet steam engine waiting on the other side — name the platform.",
+      "Platform nine is normal. Platform ten is normal. If you're running late for a wizard school express, the trick is the brick wall between them.",
     answer: "Platform 9 and 3/4",
     acceptableAnswers: [
       "Platform 9 3/4",
@@ -339,7 +339,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 29,
     category: "Movies & TV Connections",
     question:
-      "An aluminum pole, feats of strength, and grievances aired over a meatloaf dinner — name the Seinfeld holiday.",
+      "Forget tinsel. Forget gifts. Bring your grievances list, your aluminum pole, and relatives ready to wrestle for dominance after dinner.",
     answer: "Festivus",
     points: 200,
   },
@@ -347,7 +347,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 30,
     category: "Movies & TV Connections",
     question:
-      "Michael Scott ran for miles to cure rabies, Pam Beesly married Jim twice, and Dwight Schrute owns a beet farm — what disease was that fun run actually for?",
+      "Michael Scott believes awareness saves lives. His coworkers believe the fun run itself might need medical attention. The disease he's fundraising for starts with frothing, not paper cuts.",
     answer: "Rabies",
     points: 300,
   },
@@ -357,7 +357,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 31,
     category: "Pop Culture Chain Reactions",
     question:
-      "Carson Daly, a countdown in Times Square, and teenagers sprinting home after school — what MTV show decided what video was number one?",
+      "Times Square. Post-school sprint to the TV. Carson Daly counting down while your favorite video either wins or gets roasted in the group chat.",
     answer: "TRL",
     acceptableAnswers: ["Total Request Live", "Total Request Live (TRL)"],
     points: 200,
@@ -367,7 +367,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 32,
     category: "Pop Culture Chain Reactions",
     question:
-      "About sixty seconds of a radio hit, clipped onto a carabiner, swinging from every middle-school backpack — name the portable music fad that made headphones optional.",
+      "Full albums were expensive. Headphones were optional. A one-minute clip on a carabiner was somehow enough to dominate every school hallway.",
     answer: "Hit Clips",
     acceptableAnswers: ["HitClip"],
     points: 200,
@@ -377,7 +377,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 33,
     category: "Pop Culture Chain Reactions",
     question:
-      "One boy band's lyrics launched a thousand lunch-table debates about what 'that way' even meant — name the group.",
+      "They weren't asking for your heart back — they were asking whether you wanted it 'that way,' and cafeteria philosophers still can't agree what that means.",
     answer: "Backstreet Boys",
     acceptableAnswers: ["BSB", "The Backstreet Boys"],
     points: 100,
@@ -387,7 +387,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 34,
     category: "Pop Culture Chain Reactions",
     question:
-      "Denim on denim, two pop exes, one red carpet — who matched Justin Timberlake stitch for stitch and broke the internet before that was a phrase?",
+      "Denim on denim. Matching outfits. One red carpet later, and every tabloid knew exactly who had coordinated with Justin Timberlake stitch for stitch.",
     answer: "Britney Spears",
     acceptableAnswers: ["Britney"],
     points: 200,
@@ -397,7 +397,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 35,
     category: "Pop Culture Chain Reactions",
     question:
-      "An Atlanta trio turned dating standards into car-stereo law for the late '90s — every road trip still knows the words. Name the group.",
+      "Bills, phone, car note, dinner — an Atlanta trio turned dating standards into car-stereo law, and every late-'90s road trip still knows the chorus.",
     answer: "TLC",
     points: 100,
     choices: ["Destiny's Child", "En Vogue", "TLC", "SWV"],
@@ -406,7 +406,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 36,
     category: "Pop Culture Chain Reactions",
     question:
-      "Pool cabana tours, sneaker closets, and refrigerators judged from a safe distance — name the MTV show that started the mansion-tour craze.",
+      "Before Zillow became national therapy, MTV let you tour celebrity shoe closets from your couch — pool table optional, humble brag mandatory.",
     answer: "MTV Cribs",
     acceptableAnswers: ["Cribs"],
     points: 200,
@@ -416,7 +416,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 37,
     category: "Pop Culture Chain Reactions",
     question:
-      "Your uncle at every wedding, an invisible wall, and a hop-step everyone pretended to know — name the dance.",
+      "Your uncle at every wedding. A Spanish chorus. A hop-step everyone pretended to know until they were already trapped in the conga line.",
     answer: "The Macarena",
     acceptableAnswers: ["Macarena"],
     points: 100,
@@ -431,7 +431,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 38,
     category: "Pop Culture Chain Reactions",
     question:
-      "Flannel replaced hairspray, MTV got louder, and one Pacific Northwest riff made an entire generation stop ironing their shirts — name the band.",
+      "Hairspray lost. Flannel won. One Pacific Northwest riff and suddenly nobody at your high school felt like ironing their shirt anymore.",
     answer: "Nirvana",
     points: 200,
     choices: ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
@@ -440,7 +440,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 39,
     category: "Pop Culture Chain Reactions",
     question:
-      "A borrowed Queen bass line, a novelty rap hit, and a career that became an instant punchline — who was it?",
+      "A borrowed Queen bass line. A novelty rap hit. A lawsuit that turned one white rapper into everyone's favorite punchline for a decade.",
     answer: "Vanilla Ice",
     acceptableAnswers: ["Rob Van Winkle"],
     points: 300,
@@ -450,7 +450,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 40,
     category: "Pop Culture Chain Reactions",
     question:
-      "Detroit trailer parks, rap battles, and a film loosely about losing yourself — name the artist at the center of the chain.",
+      "Detroit trailer parks. Parking-lot rap battles. A film about losing yourself — the real story started long before Hollywood put it on a poster.",
     answer: "Eminem",
     acceptableAnswers: ["Marshall Mathers", "Slim Shady"],
     points: 300,
@@ -463,7 +463,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "What courteous instruction did every polite renter follow before dropping this back in the return slot?",
+      "No late fees until Monday — but only if you remembered the most polite thing a renter could do before sliding this back through the slot.",
     answer: "Rewind it",
     acceptableAnswers: [
       "Rewind",
@@ -480,7 +480,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "What business model — watch anything from your couch for one flat monthly fee — eventually put this storefront out of business?",
+      "Friday meant new releases behind this blue-and-yellow awning. Then one monthly subscription let you skip the drive entirely — what finally killed the Friday night pilgrimage?",
     answer: "Streaming",
     acceptableAnswers: ["Netflix", "Streaming services", "Video streaming"],
     points: 200,
@@ -492,7 +492,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "What accessory did you need to trade creatures with the kid sitting next to you on the bus?",
+      "Sleepover trading sessions depended on this accessory — without it, your pocket monsters stayed lonely on opposite sides of the bus aisle.",
     answer: "Link cable",
     acceptableAnswers: ["A link cable", "Game Link Cable", "Link Cable"],
     points: 200,
@@ -504,7 +504,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "It arrived under the tree speaking gibberish at midnight, learned English like a toddler, and convinced an entire generation of parents they'd made a terrible mistake — what language did it speak first?",
+      "Christmas morning: pure gibberish at midnight. By Tuesday, toddler English. Your parents were positive they'd accidentally imported a gremlin — which language came first?",
     answer: "Furbish",
     acceptableAnswers: ["Furbish language"],
     points: 200,
@@ -516,7 +516,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "What three-word death message became this computer lab classic's most famous meme?",
+      "This screen taught an entire generation that westward expansion was mostly bad water and worse luck — finish the famous death message every kid eventually saw.",
     answer: "You have died of dysentery",
     acceptableAnswers: ["Dysentery", "Died of dysentery"],
     points: 300,
@@ -528,7 +528,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "You kept it hidden in your desk while pretending to listen to long division. Ignore the beeping long enough and you'd come home to a tiny digital tragedy — what happened?",
+      "Long division on the board, guilt in your pocket, and a beeping keychain you were pretending didn't exist — ignore it through fifth period and you'd come home to a tiny digital tragedy.",
     answer: "It dies",
     acceptableAnswers: ["It died", "Death", "It dies", "Your pet dies"],
     points: 100,
@@ -540,7 +540,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Sleepovers meant four controllers, a three-pronged grip nobody could explain, and arguments over who had to use the mushy analog stick — name the console.",
+      "Sleepovers meant four controllers, a three-pronged grip nobody could explain, and one friend always stuck with the mushy analog stick nobody wanted.",
     answer: "Nintendo 64",
     acceptableAnswers: ["N64", "N64 console"],
     points: 300,
@@ -552,7 +552,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "Once a month the teacher handed out glossy flyers and suddenly everyone needed Goosebumps, erasers shaped like food, and permission to spend their allowance — what were kids ordering?",
+      "Once a month glossy flyers arrived and suddenly Goosebumps, erasers shaped like pizza, and your allowance all pointed toward one thing from the teacher's packet.",
     answer: "Books",
     acceptableAnswers: ["Book order", "Scholastic books", "Paperbacks"],
     points: 100,
@@ -564,7 +564,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     category: "Picture Round / Visual Clues",
     type: "image",
     question:
-      "After the modem finished screaming and the connection finally held, a cheerful voice delivered the most exciting sentence of the dial-up era — what two-word phrase was it?",
+      "After the modem finished screaming and the connection finally held, one cheerful voice made logging in feel like winning the lottery — give the two-word phrase.",
     answer: "You've got mail",
     acceptableAnswers: ["Youve got mail", "You've Got Mail"],
     points: 300,
@@ -575,7 +575,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 50,
     category: "Picture Round / Visual Clues",
     question:
-      "Sticky rental sleeves, magnetic tape, and a clunky player under the TV — what home video format tied it all together?",
+      "Sticky rental sleeves, magnetic tape, and a clunky player under the TV — the home video format that tied Friday night together before discs took over.",
     answer: "VHS",
     acceptableAnswers: ["VHS tape", "VHS tapes", "VCR tape"],
     points: 200,

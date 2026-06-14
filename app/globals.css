@@ -125,6 +125,16 @@ body {
   background: rgba(2, 0, 16, 0.6);
 }
 
+.arcade-bg-video-wrap {
+  z-index: 0;
+}
+
+.arcade-bg-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 0, 16, 0.72);
+}
+
 .arcade-page::before {
   content: "";
   position: absolute;
