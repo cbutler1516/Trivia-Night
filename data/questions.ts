@@ -47,7 +47,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 1,
     category: "90s & 2000s Nostalgia",
     question:
-      "What internet service famously mailed free CDs to millions of households?",
+      "Your mailbox overflowed with free trial discs promising hundreds of hours online — what internet service turned those CDs into a national punchline?",
     answer: "AOL",
     acceptableAnswers: ["America Online", "A.O.L."],
     points: 100,
@@ -56,7 +56,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 2,
     category: "90s & 2000s Nostalgia",
     question:
-      "What pocket-sized virtual pet fad had kids feeding and cleaning up after a pixel creature on a keychain?",
+      "What pocket-sized digital pet lived on a keychain and quietly died if you forgot to feed it during math class?",
     answer: "Tamagotchi",
     acceptableAnswers: ["Tamogatchi"],
     points: 100,
@@ -65,7 +65,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 3,
     category: "90s & 2000s Nostalgia",
     question:
-      "What social network let you customize your profile with auto-playing music and a ranked 'Top 8' friends list?",
+      "Which early social network turned friendship into drama with a ranked Top 8 and auto-playing profile songs?",
     answer: "MySpace",
     points: 100,
   },
@@ -73,7 +73,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 4,
     category: "90s & 2000s Nostalgia",
     question:
-      "What instant messaging service used buddy lists, away messages, and door-slam sounds on desktop computers?",
+      "Which desktop messenger had you crafting witty away messages, juggling buddy lists, and hearing a door slam when friends signed off?",
     answer: "AIM",
     acceptableAnswers: ["AOL Instant Messenger", "AOL IM"],
     points: 100,
@@ -82,7 +82,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 5,
     category: "90s & 2000s Nostalgia",
     question:
-      "What video rental chain with blue-and-yellow storefronts became synonymous with Friday night movie runs?",
+      "Before streaming killed date night, what blue-and-yellow rental chain meant a Friday trip down the new-releases wall?",
     answer: "Blockbuster",
     points: 100,
   },
@@ -90,7 +90,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 6,
     category: "90s & 2000s Nostalgia",
     question:
-      "What school book fair catalog arrived in classrooms so kids could order paperbacks, posters, and trinkets?",
+      "What classroom catalog had kids circling Goosebumps paperbacks and erasers, then handing a check to their teacher?",
     answer: "Scholastic Book Order",
     acceptableAnswers: [
       "Scholastic",
@@ -105,7 +105,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 7,
     category: "90s & 2000s Nostalgia",
     question:
-      "What handheld game device from Nintendo let you swap creatures with a link cable and 'Gotta catch 'em all' became a national obsession?",
+      "Which Nintendo handheld had you trading creatures through a link cable until 'Gotta catch 'em all' took over every recess?",
     answer: "Game Boy",
     acceptableAnswers: ["Pokemon", "Pokémon", "Game Boy Color"],
     points: 200,
@@ -114,7 +114,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 8,
     category: "90s & 2000s Nostalgia",
     question:
-      "What fuzzy animatronic toy spoke its own language and became a must-have holiday craze?",
+      "What fuzzy holiday craze babbled in its own language, blinked at you from the shelf, and demanded to be fed?",
     answer: "Furby",
     points: 100,
   },
@@ -122,7 +122,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 9,
     category: "90s & 2000s Nostalgia",
     question:
-      "What pioneer-themed computer game taught kids about dysentery, oxen, and fording rivers?",
+      "Which computer lab classic had you losing oxen, fording rivers, and dying of dysentery on the way west?",
     answer: "Oregon Trail",
     acceptableAnswers: ["The Oregon Trail"],
     points: 200,
@@ -131,7 +131,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 10,
     category: "90s & 2000s Nostalgia",
     question:
-      "What home video format used magnetic tape and made 'Be kind, rewind' a household phrase?",
+      "What home video format came with magnetic tape, a clunky player, and rental stickers reminding you to 'Be kind, rewind'?",
     answer: "VHS",
     acceptableAnswers: ["VHS tape", "VHS tapes", "VCR tape"],
     points: 200,
@@ -142,114 +142,127 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 11,
     category: "Disney",
     question:
-      "In The Lion King, what carefree phrase do Timon and Pumbaa teach Simba to stop worrying?",
-    answer: "Hakuna Matata",
-    acceptableAnswers: ["Hakuna matata", "No worries"],
+      "Before reservation apps and influencer brunches, park insiders whispered about an invitation-only dining club hidden above New Orleans Square at Disneyland — what's it called?",
+    answer: "Club 33",
     points: 100,
-    choices: [
-      "Circle of Life",
-      "Hakuna Matata",
-      "Can You Feel the Love Tonight",
-      "Be Prepared",
-    ],
+    choices: ["Club 33", "Blue Bayou", "Carnation Cafe", "The Golden Horseshoe"],
   },
   {
     id: 12,
     category: "Disney",
     question:
-      "Which Disney heroine sings about wanting to be 'part of your world' from her underwater treasure grotto?",
-    answer: "Ariel",
-    acceptableAnswers: ["The Little Mermaid"],
+      "Disneyland's snow-capped peak wasn't just set dressing — it became the world's first tubular steel roller coaster when it opened. Name the ride.",
+    answer: "Matterhorn Bobsleds",
+    acceptableAnswers: ["The Matterhorn", "Matterhorn"],
     points: 100,
-    choices: ["Belle", "Ariel", "Moana", "Rapunzel"],
+    choices: [
+      "Space Mountain",
+      "Matterhorn Bobsleds",
+      "Big Thunder Mountain",
+      "Splash Mountain",
+    ],
   },
   {
     id: 13,
     category: "Disney",
     question:
-      "In Frozen, what power ballad does Elsa belt out while building her ice palace?",
-    answer: "Let It Go",
-    acceptableAnswers: ["Let it go"],
+      "In the Haunted Mansion séance scene, whose disembodied head floats inside the crystal ball while spirits swirl around the room?",
+    answer: "Madame Leota",
+    acceptableAnswers: ["Leota"],
     points: 100,
-    choices: [
-      "Do You Want to Build a Snowman?",
-      "For the First Time in Forever",
-      "Let It Go",
-      "Love Is an Open Door",
-    ],
+    choices: ["Madame Leota", "Constance Hatchaway", "Ezra", "Gus"],
   },
   {
     id: 14,
     category: "Disney",
     question:
-      "What Pixar movie made adults openly cry within the first ten minutes of the opening montage?",
-    answer: "Up",
+      "In the Pirates of the Caribbean queue, jailed buccaneers spend eternity trying to coax a dog to bring them what?",
+    answer: "Keys",
+    acceptableAnswers: ["The keys", "Jail keys"],
     points: 100,
-    choices: ["Wall-E", "Inside Out", "Up", "Toy Story 3"],
+    choices: ["Keys", "Gold coins", "A treasure map", "A chicken leg"],
   },
   {
     id: 15,
     category: "Disney",
     question:
-      "In Aladdin, during 'Friend Like Me,' Genie briefly transforms into a celebrity talk-show host — who?",
-    answer: "Arsenio Hall",
-    acceptableAnswers: ["Arsenio"],
+      "Before every ride was a blockbuster franchise, which tropical bird show at Disneyland helped pioneer audio-animatronics in the early 1960s?",
+    answer: "Enchanted Tiki Room",
+    acceptableAnswers: ["Walt Disney's Enchanted Tiki Room", "Tiki Room"],
     points: 100,
-    choices: ["Oprah Winfrey", "Jay Leno", "Arsenio Hall", "David Letterman"],
+    choices: [
+      "Enchanted Tiki Room",
+      "Country Bear Jamboree",
+      "Hall of Presidents",
+      "Carousel of Progress",
+    ],
   },
   {
     id: 16,
     category: "Disney",
     question:
-      "In Beauty and the Beast, what household object is Lumière?",
-    answer: "Candelabra",
-    acceptableAnswers: ["A candlestick", "Candlestick"],
+      "Disney park magic is not built by elves — what is the official name of the team of Imagineers, artists, and engineers behind the attractions?",
+    answer: "Imagineering",
+    acceptableAnswers: ["Walt Disney Imagineering", "Disney Imagineering"],
     points: 200,
-    choices: ["Wardrobe", "Candelabra", "Teapot", "Feather duster"],
+    choices: [
+      "Imagineering",
+      "WED Enterprises",
+      "Disney Creative",
+      "Pixar Animation",
+    ],
   },
   {
     id: 17,
     category: "Disney",
     question:
-      "In The Little Mermaid, what does Ariel give up so she can walk on land?",
-    answer: "Her voice",
-    acceptableAnswers: ["Ariel's voice", "Her singing voice", "Voice"],
+      "Park veterans love spotting a subtle design Easter egg — three circles arranged like Mickey's silhouette. What is it called?",
+    answer: "Hidden Mickey",
+    acceptableAnswers: ["A Hidden Mickey", "Hidden Mickeys"],
     points: 100,
-    choices: ["Her crown", "Her tail", "Her voice", "Her collection"],
+    choices: ["Hidden Mickey", "Pixie Dust", "Disney Vault", "Magic Band"],
   },
   {
     id: 18,
     category: "Disney",
     question:
-      "In Toy Story, what's Buzz Lightyear's signature catchphrase when he thinks he's really flying?",
-    answer: "To infinity and beyond",
-    acceptableAnswers: ["To infinity and beyond!"],
+      "Inside EPCOT's giant geodesic sphere, what slow-moving ride traces the story of human communication across history?",
+    answer: "Spaceship Earth",
     points: 100,
     choices: [
-      "Reach for the sky",
-      "To infinity and beyond",
-      "You're a toy!",
-      "Buzz off",
+      "Spaceship Earth",
+      "Mission: SPACE",
+      "Soarin'",
+      "Living with the Land",
     ],
   },
   {
     id: 19,
     category: "Disney",
     question:
-      "What Disney movie opens with a dramatic sunrise over the Pride Lands?",
-    answer: "The Lion King",
-    acceptableAnswers: ["Lion King"],
+      "At Hollywood Studios, what haunted hotel elevator drop ride sends you plunging into the Twilight Zone?",
+    answer: "Tower of Terror",
+    acceptableAnswers: [
+      "The Twilight Zone Tower of Terror",
+      "Hollywood Tower Hotel",
+    ],
     points: 100,
-    choices: ["Bambi", "Tarzan", "The Lion King", "The Jungle Book"],
+    choices: [
+      "Tower of Terror",
+      "Haunted Mansion",
+      "Rock 'n' Roller Coaster",
+      "Expedition Everest",
+    ],
   },
   {
     id: 20,
     category: "Disney",
     question:
-      "Which Disney movie sends its heroine to boot camp to the tune of 'I'll Make a Man Out of You'?",
-    answer: "Mulan",
+      "On Main Street, U.S.A. at Disneyland, a lamp stays perpetually lit in an upstairs window — a quiet tribute to which Disney legend?",
+    answer: "Walt Disney",
+    acceptableAnswers: ["Walt"],
     points: 200,
-    choices: ["Pocahontas", "Brave", "Mulan", "Moana"],
+    choices: ["Walt Disney", "Roy Disney", "Ub Iwerks", "Mickey Mouse"],
   },
 
   // ── Movies & TV (10) ────────────────────────────────────────────────────
@@ -349,7 +362,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 31,
     category: "Pop Culture & Music",
     question:
-      "What boy band sang the hit 'I Want It That Way'?",
+      "At every late-'90s school dance, couples argued over lyrics that might not even make sense — which boy band gave us 'I Want It That Way'?",
     answer: "Backstreet Boys",
     acceptableAnswers: ["BSB", "The Backstreet Boys"],
     points: 100,
@@ -359,7 +372,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 32,
     category: "Pop Culture & Music",
     question:
-      "What pop star performed with Justin Timberlake at the Super Bowl in a now-iconic denim-on-denim outfit?",
+      "Which pop star stepped onto the 2001 American Music Awards red carpet in head-to-toe denim — perfectly matching Justin Timberlake and launching an eternal meme?",
     answer: "Britney Spears",
     acceptableAnswers: ["Britney"],
     points: 100,
@@ -369,7 +382,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 33,
     category: "Pop Culture & Music",
     question:
-      "Before Spotify, what peer-to-peer service had college kids downloading songs one track at a time — and nervously watching for lawsuits?",
+      "Before Spotify rewired how we listen, what file-sharing service had college kids trading MP3s in dorm rooms — while record labels scrambled to sue?",
     answer: "Napster",
     points: 100,
     choices: ["Limewire", "Kazaa", "Napster", "iTunes"],
@@ -378,7 +391,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 34,
     category: "Pop Culture & Music",
     question:
-      "What R&B girl group sang 'No Scrubs' and 'Waterfalls'?",
+      "Which R&B trio turned dating standards into late-'90s anthems — telling us what they didn't want in a man and warning us not to chase 'Waterfalls'?",
     answer: "TLC",
     points: 100,
     choices: ["Destiny's Child", "En Vogue", "TLC", "SWV"],
@@ -387,7 +400,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 35,
     category: "Pop Culture & Music",
     question:
-      "What dance craze had everyone at weddings sliding their hands down an invisible wall and crossing their arms?",
+      "Which wedding-reception dance had entire tables sliding their hands down an invisible wall and hopping in sync — whether they volunteered or not?",
     answer: "The Macarena",
     acceptableAnswers: ["Macarena"],
     points: 100,
@@ -402,7 +415,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 36,
     category: "Pop Culture & Music",
     question:
-      "What grunge band from Seattle sang 'Smells Like Teen Spirit'?",
+      "Which Seattle grunge band's breakthrough hit — opening with that instantly recognizable riff — helped flip MTV from hair metal to flannel overnight?",
     answer: "Nirvana",
     points: 100,
     choices: ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
@@ -411,7 +424,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 37,
     category: "Pop Culture & Music",
     question:
-      "What MTV show took cameras inside celebrities' mansions to show off their cars, pools, and walk-in closets?",
+      "Before Instagram Stories, what MTV series invited us into celebrity mansions to judge their pool slides, sneaker walls, and fridge contents?",
     answer: "MTV Cribs",
     acceptableAnswers: ["Cribs"],
     points: 200,
@@ -421,7 +434,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 38,
     category: "Pop Culture & Music",
     question:
-      "What artist had massive hits with 'Umbrella,' 'We Found Love,' and 'Diamonds'?",
+      "Which artist had us spelling out 'ella, ella, eh, eh, eh' under umbrellas — and later owning the charts with 'We Found Love' and 'Diamonds'?",
     answer: "Rihanna",
     points: 100,
     choices: ["Beyoncé", "Lady Gaga", "Rihanna", "Katy Perry"],
@@ -430,7 +443,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 39,
     category: "Pop Culture & Music",
     question:
-      "What one-hit wonder rapper opened with 'Stop, collaborate and listen' on 'Ice Ice Baby'?",
+      "Which rapper borrowed Queen and David Bowie's bass line, blew up in the early '90s with 'Ice Ice Baby,' and briefly became a pop-culture punchline?",
     answer: "Vanilla Ice",
     acceptableAnswers: ["Rob Van Winkle"],
     points: 200,
@@ -440,7 +453,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     id: 40,
     category: "Pop Culture & Music",
     question:
-      "What late-night segment had celebrities lip-syncing in a car, often going viral on YouTube?",
+      "Which late-night segment strapped celebrities into a car for surprise sing-alongs — clips that dominated your social feed for years?",
     answer: "Carpool Karaoke",
     acceptableAnswers: ["James Corden Carpool Karaoke"],
     points: 200,
