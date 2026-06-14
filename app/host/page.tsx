@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { MuteToggle } from "@/components/MuteToggle";
 import { RetroShell } from "@/components/RetroShell";
 import {
@@ -11,6 +11,10 @@ import {
 } from "@/data/questions";
 import { ImageQuestion } from "@/components/ImageQuestion";
 import { SoundTestPanel } from "@/components/SoundTestPanel";
+import {
+  buildMultipleChoiceOptions,
+  isMultipleChoiceOptionCorrect,
+} from "@/lib/multiple-choice";
 import {
   GAME_STATE_UPDATED_EVENT,
   adjustScore,
@@ -147,6 +151,10 @@ export default function HostPage() {
   const question = triviaQuestions[currentIndex];
   const questionType = resolveQuestionType(question);
   const questionNumber = currentIndex + 1;
+  const multipleChoiceOptions = useMemo(() => {
+    if (questionType !== "multiple-choice") return [];
+    return buildMultipleChoiceOptions(question);
+  }, [question.id, questionType]);
   const { isAnswerRevealed, scores, submissions, answerMarks } = gameState;
   const submissionCount = getSubmissionCount(submissions);
   const timerRemaining = getTimerRemaining(gameState);
@@ -352,6 +360,28 @@ export default function HostPage() {
         <h2 className="font-display text-lg font-bold leading-snug text-white sm:text-xl">
           {question.question}
         </h2>
+
+        {questionType === "multiple-choice" && (
+          <ul className="mt-4 space-y-2">
+            {multipleChoiceOptions.map((option) => {
+              const isCorrect =
+                isAnswerRevealed &&
+                isMultipleChoiceOptionCorrect(question, option);
+              return (
+                <li
+                  key={option}
+                  className={
+                    isCorrect
+                      ? "arcade-option arcade-option--correct"
+                      : "arcade-option"
+                  }
+                >
+                  {option}
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
         {question.statements && (
           <ul className="mt-4 space-y-2">

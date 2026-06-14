@@ -27,6 +27,10 @@ import {
   type Team,
 } from "@/lib/game-store";
 import {
+  buildMultipleChoiceOptions,
+  isMultipleChoiceOptionCorrect,
+} from "@/lib/multiple-choice";
+import {
   playAnswerRevealed,
   playAnswerSubmitted,
   playTimerExpired,
@@ -87,30 +91,6 @@ function difficultyClass(points: number): string {
   if (points >= 300) return "arcade-difficulty--hard";
   if (points >= 200) return "arcade-difficulty--medium";
   return "arcade-difficulty--easy";
-}
-
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-function buildMultipleChoiceOptions(question: TriviaQuestion): string[] {
-  const decoys = triviaQuestions
-    .filter(
-      (q) =>
-        q.id !== question.id &&
-        q.category === question.category &&
-        !q.statements &&
-        q.answer.length < 40,
-    )
-    .map((q) => q.answer);
-
-  const unique = [...new Set([question.answer, ...decoys])];
-  return shuffle(unique).slice(0, 4);
 }
 
 function normalizeAnswer(value: string): string {
@@ -500,8 +480,7 @@ export default function PlayPage() {
               const isSelected =
                 selectedChoice === option || teamSubmission === option;
               const isCorrectOption =
-                isRevealed &&
-                normalizeAnswer(option) === normalizeAnswer(question.answer);
+                isRevealed && isMultipleChoiceOptionCorrect(question, option);
               const isWrongPick = isRevealed && isSelected && !isCorrectOption;
 
               let optionClass = "arcade-option";

@@ -25,6 +25,8 @@ export interface TriviaQuestion {
   imageAlt?: string;
   /** For "Two Lies & A Truth" — three statements, answer is the true one (A, B, or C) */
   statements?: [string, string, string];
+  /** Predefined multiple-choice options (used as-is when provided) */
+  choices?: string[];
 }
 
 export function resolveQuestionType(question: TriviaQuestion): QuestionType {
@@ -144,6 +146,12 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Hakuna Matata",
     acceptableAnswers: ["Hakuna matata", "No worries"],
     points: 100,
+    choices: [
+      "Circle of Life",
+      "Hakuna Matata",
+      "Can You Feel the Love Tonight",
+      "Be Prepared",
+    ],
   },
   {
     id: 12,
@@ -153,6 +161,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Ariel",
     acceptableAnswers: ["The Little Mermaid"],
     points: 100,
+    choices: ["Belle", "Ariel", "Moana", "Rapunzel"],
   },
   {
     id: 13,
@@ -162,6 +171,12 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Let It Go",
     acceptableAnswers: ["Let it go"],
     points: 100,
+    choices: [
+      "Do You Want to Build a Snowman?",
+      "For the First Time in Forever",
+      "Let It Go",
+      "Love Is an Open Door",
+    ],
   },
   {
     id: 14,
@@ -170,6 +185,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "What Pixar movie made adults openly cry within the first ten minutes of the opening montage?",
     answer: "Up",
     points: 100,
+    choices: ["Wall-E", "Inside Out", "Up", "Toy Story 3"],
   },
   {
     id: 15,
@@ -179,6 +195,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Arsenio Hall",
     acceptableAnswers: ["Arsenio"],
     points: 100,
+    choices: ["Oprah Winfrey", "Jay Leno", "Arsenio Hall", "David Letterman"],
   },
   {
     id: 16,
@@ -188,6 +205,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Candelabra",
     acceptableAnswers: ["A candlestick", "Candlestick"],
     points: 200,
+    choices: ["Wardrobe", "Candelabra", "Teapot", "Feather duster"],
   },
   {
     id: 17,
@@ -197,6 +215,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Her voice",
     acceptableAnswers: ["Ariel's voice", "Her singing voice", "Voice"],
     points: 100,
+    choices: ["Her crown", "Her tail", "Her voice", "Her collection"],
   },
   {
     id: 18,
@@ -206,6 +225,12 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "To infinity and beyond",
     acceptableAnswers: ["To infinity and beyond!"],
     points: 100,
+    choices: [
+      "Reach for the sky",
+      "To infinity and beyond",
+      "You're a toy!",
+      "Buzz off",
+    ],
   },
   {
     id: 19,
@@ -215,6 +240,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "The Lion King",
     acceptableAnswers: ["Lion King"],
     points: 100,
+    choices: ["Bambi", "Tarzan", "The Lion King", "The Jungle Book"],
   },
   {
     id: 20,
@@ -223,6 +249,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "Which Disney movie sends its heroine to boot camp to the tune of 'I'll Make a Man Out of You'?",
     answer: "Mulan",
     points: 200,
+    choices: ["Pocahontas", "Brave", "Mulan", "Moana"],
   },
 
   // ── Movies & TV (10) ────────────────────────────────────────────────────
@@ -326,6 +353,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Backstreet Boys",
     acceptableAnswers: ["BSB", "The Backstreet Boys"],
     points: 100,
+    choices: ["*NSYNC", "98 Degrees", "Backstreet Boys", "New Kids on the Block"],
   },
   {
     id: 32,
@@ -335,6 +363,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Britney Spears",
     acceptableAnswers: ["Britney"],
     points: 100,
+    choices: ["Christina Aguilera", "Pink", "Britney Spears", "Shakira"],
   },
   {
     id: 33,
@@ -343,6 +372,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "Before Spotify, what peer-to-peer service had college kids downloading songs one track at a time — and nervously watching for lawsuits?",
     answer: "Napster",
     points: 100,
+    choices: ["Limewire", "Kazaa", "Napster", "iTunes"],
   },
   {
     id: 34,
@@ -351,6 +381,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "What R&B girl group sang 'No Scrubs' and 'Waterfalls'?",
     answer: "TLC",
     points: 100,
+    choices: ["Destiny's Child", "En Vogue", "TLC", "SWV"],
   },
   {
     id: 35,
@@ -360,6 +391,12 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "The Macarena",
     acceptableAnswers: ["Macarena"],
     points: 100,
+    choices: [
+      "The Cha-Cha Slide",
+      "The Electric Slide",
+      "The Macarena",
+      "The Hokey Pokey",
+    ],
   },
   {
     id: 36,
@@ -368,6 +405,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "What grunge band from Seattle sang 'Smells Like Teen Spirit'?",
     answer: "Nirvana",
     points: 100,
+    choices: ["Pearl Jam", "Soundgarden", "Nirvana", "Alice in Chains"],
   },
   {
     id: 37,
@@ -377,6 +415,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "MTV Cribs",
     acceptableAnswers: ["Cribs"],
     points: 200,
+    choices: ["Pimp My Ride", "Room Raiders", "MTV Cribs", "TRL"],
   },
   {
     id: 38,
@@ -385,6 +424,7 @@ export const triviaQuestions: TriviaQuestion[] = [
       "What artist had massive hits with 'Umbrella,' 'We Found Love,' and 'Diamonds'?",
     answer: "Rihanna",
     points: 100,
+    choices: ["Beyoncé", "Lady Gaga", "Rihanna", "Katy Perry"],
   },
   {
     id: 39,
@@ -394,6 +434,7 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Vanilla Ice",
     acceptableAnswers: ["Rob Van Winkle"],
     points: 200,
+    choices: ["MC Hammer", "Sir Mix-A-Lot", "Vanilla Ice", "Snow"],
   },
   {
     id: 40,
@@ -403,6 +444,12 @@ export const triviaQuestions: TriviaQuestion[] = [
     answer: "Carpool Karaoke",
     acceptableAnswers: ["James Corden Carpool Karaoke"],
     points: 200,
+    choices: [
+      "Lip Sync Battle",
+      "Sing Along with Mic",
+      "Carpool Karaoke",
+      "Karaoke Cab",
+    ],
   },
 
   // ── Two Lies & A Truth (5) ───────────────────────────────────────────────
