@@ -300,7 +300,8 @@ export default function PlayPage() {
               The Millennial Showdown
             </h1>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-300">
-              One player per team should join the game.
+              Only one captain per team should submit answers. Everyone else can
+              follow along on the host or leaderboard screen.
             </p>
           </header>
 
@@ -359,10 +360,6 @@ export default function PlayPage() {
                 className="arcade-input text-base"
               />
             </div>
-
-            <p className="text-center text-sm text-slate-400">
-              The captain submits answers for the team.
-            </p>
 
             {joinError && (
               <p className="text-center text-sm text-red-300">{joinError}</p>
